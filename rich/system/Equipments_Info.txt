@@ -1,0 +1,97 @@
+
+
+port 1  Ciena C1	172.100.1.2
+port 2  Ciena C2	172.100.1.3
+port 3  Ciena D		172.100.1.4
+port 4  Ciena E		172.100.1.5
+port 5  Ciena F		172.100.1.6
+port 6  Ciena G		172.100.1.7
+port 7  Ciena H1	172.100.1.8
+port 8  Ciena H2	172.100.1.9
+port 9  Ciena J		172.100.1.10
+port 10 Ciena K1	172.100.1.11
+port 11 Ciena K2	172.100.1.12
+port 12 Ciena MDF	172.100.1.13
+
+The Source Cisco Router 66.180.243.210
+Plazamexico Cisco Router 162.252.101.5
+
+
+#. Wi-line 백본 정보
+Public IP : 162.252.101.2 ~ 30 (29개)
+Subnet    : 255.255.255.224
+Gateway : 162.252.101.1
+DNS : (primary) 64.71.0.60
+           (secondary) 64.71.0.34
+		   
+		   10.65.45.0 (KT)
+		   10.65.45.1
+		   
+		   
+
+1	10.1.1.50	162.252.101.30
+2	10.1.1.49	162.252.101.29
+3	10.1.1.48	162.252.101.28
+4	10.1.1.47	162.252.101.27
+5	10.1.1.46	162.252.101.26
+6	10.1.1.42	162.252.101.22
+7	10.1.1.42	162.252.101.22
+8	10.1.1.41	162.252.101.21
+		   
+		   
+Plazamexico Telnet Cisco Router IP
+162.252.101.5
+port 23
+
+
+PlazaMexico DNS : 64.71.0.60	64.71.0.34
+
+TheSourceMall DNS : 64.60.0.17    64.60.0.18	
+	
+
+
+The Source Mall Telnet
+66.180.243.210
+23
+telnet pw : richard123
+id : en
+password : richard123
+
+
+"netstat -n"(도스 모드) 명령어를 실행하면 얼마나 많은 수의 Session이 생성되어 있는지 확인
+
+
+
+172.16.233.214
+192.168.10.1
+192.168.15.254
+
+
+
+
+
+
+
+telnet 172.100.1.4
+
+su
+wwp
+
+
+
+10048 - 10M
+50024 - 50M
+
+
+
+MD properties - Port#5 - 30M (30024)
+
+
+http://dslreports.com/faq/8979/
+
+
+
+월간 회의 접속 사이트 주소에요.
+http://newgens.aspv2.com
+ID   : newgens7
+PW : 12345

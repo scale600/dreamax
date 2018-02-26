@@ -1,0 +1,140 @@
+Source_Mall_TEST_2> con sh b
+vlan create vlan 10,20
+vlan create vlan 90
+system set host-name Source_Mall_TEST_2
+interface remote set vlan 90
+interface remote set ip 172.100.1.101/24 
+interface set gateway 172.100.1.1 
+port set port 1 speed auto
+port set port 2 speed auto
+port set port 3 speed auto
+port set port 4 speed auto
+port set port 5 speed auto
+port set port 6 speed auto
+port set port 7 speed auto
+port set port 8 speed auto
+port set port 9 speed auto
+port set port 10 speed auto
+port set port 11 speed auto
+port set port 12 speed auto
+port set port 13 speed auto
+port set port 14 speed auto
+port set port 15 speed auto
+port set port 16 speed auto
+port set port 17 speed auto
+port set port 18 speed auto
+port set port 19 speed hundred auto-neg off
+port set port 20 speed hundred auto-neg off
+vlan add vlan 10 port 1
+vlan remove vlan 1 port 1
+vlan add vlan 10 port 2
+vlan remove vlan 1 port 2
+vlan add vlan 10 port 3
+vlan remove vlan 1 port 3
+vlan add vlan 10 port 4
+vlan remove vlan 1 port 4
+vlan add vlan 10 port 5
+vlan remove vlan 1 port 5
+vlan add vlan 10 port 6
+vlan remove vlan 1 port 6
+vlan add vlan 10 port 7
+vlan remove vlan 1 port 7
+vlan add vlan 10 port 8
+vlan remove vlan 1 port 8
+vlan add vlan 10 port 9
+vlan remove vlan 1 port 9
+vlan add vlan 10 port 10
+vlan remove vlan 1 port 10
+vlan add vlan 10 port 11
+vlan remove vlan 1 port 11
+vlan add vlan 10 port 12
+vlan remove vlan 1 port 12
+vlan add vlan 10 port 13
+vlan remove vlan 1 port 13
+vlan add vlan 10 port 14
+vlan remove vlan 1 port 14
+vlan add vlan 10 port 15
+vlan remove vlan 1 port 15
+vlan add vlan 10 port 16
+vlan remove vlan 1 port 16
+vlan add vlan 20 port 19
+vlan remove vlan 1 port 19
+vlan add vlan 20 port 20
+vlan remove vlan 1 port 20
+vlan remove vlan 1 port 21
+vlan remove vlan 1 port 22
+vlan remove vlan 1 port 23
+vlan add vlan 10,20 port 24
+vlan add vlan 90 port 24
+vlan remove vlan 1 port 24
+port set port 1 pvid 10 egress-untag-vlan 10
+port set port 2 pvid 10 egress-untag-vlan 10
+port set port 3 pvid 10 egress-untag-vlan 10
+port set port 4 pvid 10 egress-untag-vlan 10
+port set port 5 pvid 10 egress-untag-vlan 10
+port set port 6 pvid 10 egress-untag-vlan 10
+port set port 7 pvid 10 egress-untag-vlan 10
+port set port 8 pvid 10 egress-untag-vlan 10
+port set port 9 pvid 10 egress-untag-vlan 10
+port set port 10 pvid 10 egress-untag-vlan 10
+port set port 11 pvid 10 egress-untag-vlan 10
+port set port 12 pvid 10 egress-untag-vlan 10
+port set port 13 pvid 10 egress-untag-vlan 10
+port set port 14 pvid 10 egress-untag-vlan 10
+port set port 15 pvid 10 egress-untag-vlan 10
+port set port 16 pvid 10 egress-untag-vlan 10
+port set port 19 pvid 20 egress-untag-vlan 20
+port set port 20 pvid 20 egress-untag-vlan 20
+traffic-services queuing egress-port set port 19 shaper-rate 100000
+traffic-services queuing egress-port set port 20 shaper-rate 100000
+traffic-profiling set meter-provisioning eir
+traffic-services queuing egress-port set port 1 shaper-rate 10048
+traffic-services queuing egress-port set port 2 shaper-rate 10048
+traffic-services queuing egress-port set port 3 shaper-rate 10048
+traffic-services queuing egress-port set port 4 shaper-rate 10048
+traffic-services queuing egress-port set port 5 shaper-rate 10048
+traffic-services queuing egress-port set port 6 shaper-rate 10048
+traffic-services queuing egress-port set port 7 shaper-rate 10048
+traffic-services queuing egress-port set port 8 shaper-rate 10048
+traffic-services queuing egress-port set port 9 shaper-rate 10048
+traffic-services queuing egress-port set port 10 shaper-rate 10048
+traffic-services queuing egress-port set port 11 shaper-rate 10048
+traffic-services queuing egress-port set port 12 shaper-rate 10048
+traffic-services queuing egress-port set port 13 shaper-rate 10048
+traffic-services queuing egress-port set port 14 shaper-rate 10048
+traffic-services queuing egress-port set port 15 shaper-rate 10048
+traffic-services queuing egress-port set port 16 shaper-rate 10048
+traffic-profiling standard-profile create port 1 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 2 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 3 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 4 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 5 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 6 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 7 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 8 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 9 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 10 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 11 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 12 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 13 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 14 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 15 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling standard-profile create port 16 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged
+traffic-profiling enable port 1
+traffic-profiling enable port 2
+traffic-profiling enable port 3
+traffic-profiling enable port 4
+traffic-profiling enable port 5
+traffic-profiling enable port 6
+traffic-profiling enable port 7
+traffic-profiling enable port 8
+traffic-profiling enable port 9
+traffic-profiling enable port 10
+traffic-profiling enable port 11
+traffic-profiling enable port 12
+traffic-profiling enable port 13
+traffic-profiling enable port 14
+traffic-profiling enable port 15
+traffic-profiling enable port 16
+traffic-profiling enable
+Source_Mall_TEST_2>

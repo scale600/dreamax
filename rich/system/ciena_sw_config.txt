@@ -1,0 +1,77 @@
+Q-dir
+
+
+login id : su
+password : wwp
+
+
+config show brief
+
+vlan creat vlan 10,20,90
+port set port 1-18 speed auto
+port set port 19-20 speed hundred auto-neg off
+vlan ad vlan 10 port 1-16
+vlan ad vlan 10 port 19-20
+vlan ad vlan 10,20,90 port 24
+port set port 1-16 pvid 10 egress-untag-vlan 10
+port set port 19-20 pvid 20 egress-untag-vlan 20
+vlan remove vlan 1 port 1-16
+vlan remove vlan 1 port 19-20
+vlan remove vlan 1 port 24
+
+traffic-profiling set meter-provisioning eir
+
+traffic-profiling set port 1 mode advanced
+traffic-profiling set port 2 mode advanced
+traffic-profiling set port 3 mode advanced
+traffic-profiling set port 4 mode advanced
+traffic-profiling set port 5 mode advanced
+traffic-profiling set port 6 mode advanced
+traffic-profiling set port 7 mode advanced
+traffic-profiling set port 8 mode advanced
+traffic-profiling set port 9 mode advanced
+traffic-profiling set port 10 mode advanced
+traffic-profiling set port 11 mode advanced
+traffic-profiling set port 12 mode advanced
+traffic-profiling set port 13 mode advanced
+traffic-profiling set port 14 mode advanced
+traffic-profiling set port 15 mode advanced
+traffic-profiling set port 16 mode advanced
+
+traffic-profiling standard-profile creat port 1 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024 
+traffic-profiling standard-profile creat port 2 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 3 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 4 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 5 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 6 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 7 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 8 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 9 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 10 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 11 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 12 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 13 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 14 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 15 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+traffic-profiling standard-profile creat port 16 profile 1 name D10M_U1M cir 10048 eir 1024 cbs 1024 ebs 1024
+
+traffic-profiling enable port 1
+traffic-profiling enable port 2
+traffic-profiling enable port 3
+traffic-profiling enable port 4
+traffic-profiling enable port 5
+traffic-profiling enable port 6
+traffic-profiling enable port 7
+traffic-profiling enable port 8
+traffic-profiling enable port 9
+traffic-profiling enable port 10
+traffic-profiling enable port 11
+traffic-profiling enable port 12
+traffic-profiling enable port 13
+traffic-profiling enable port 14
+traffic-profiling enable port 15
+traffic-profiling enable port 16
+
+conf save
+
+

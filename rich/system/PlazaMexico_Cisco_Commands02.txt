@@ -1,0 +1,472 @@
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#sh run
+config-file-header
+switch9eb4c4
+v1.4.0.88 / R800_NIK_1_4_194_194
+CLI v1.0
+set system mode switch
+
+file SSD indicator encrypted
+@
+ssd-control-start
+ssd config
+ssd file passphrase control unrestricted
+no ssd file integrity control
+ssd-control-end cb0a3fdb1f3a1af4e4430033719968c0
+!
+vlan database
+vlan 20,30,90
+exit
+voice vlan oui-table add 0001e3 Siemens_AG_phone________
+voice vlan oui-table add 00036b Cisco_phone_____________
+voice vlan oui-table add 00096e Avaya___________________
+voice vlan oui-table add 000fe2 H3C_Aolynk______________
+voice vlan oui-table add 0060b9 Philips_and_NEC_AG_phone
+voice vlan oui-table add 00d01e Pingtel_phone___________
+voice vlan oui-table add 00e075 Polycom/Veritel_phone___
+voice vlan oui-table add 00e0bb 3Com_phone______________
+hostname switch9eb4c4
+!
+interface vlan 90
+ ip address 172.30.1.4 255.255.255.0
+ no ip address dhcp
+!
+interface fastethernet1
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet2
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet3
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet4
+ switchport mode access
+switch9eb4c4#conf t
+switch9eb4c4(config)#int range
+  FastEthernet         Fast ethernet interface to configure
+  FE                   Fast ethernet interface to configure
+  GigabitEthernet      Giga ethernet interface to configure
+  GE                   Giga ethernet interface to configure
+  Port-Channel         Ethernet Channel of interfaces
+  vlan                 IEEE 802.1Q Vlans
+switch9eb4c4(config)#int range FastEthernet1-8
+switch9eb4c4(config-if-range)#
+  authentication       Authentication methods on a port
+  back-pressure        Enable back-pressure
+  bridge               Bridge configuration subcommand
+  cdp                  CDP interface subcommands
+  channel-group        Add port to Port-channel
+  description          Interface specific description
+  do                   execute an EXEC-level command
+  dot1x                Interface Configuration Commands for 802.1x
+  duplex               Configure duplex operation
+  end                  Exit from configure mode
+  exit                 Exit from current context
+  flowcontrol          Configure flow-control mode
+  green-ethernet       Green ethernet commands
+  gvrp                 GVRP interface commands
+  help                 Description of the interactive help system
+  ip                   Global IP configuration commands
+  ipv6                 IPv6 commands
+  lacp                 Interface IEEE 802.3 link aggregation commands
+  lldp                 Configure LLDP protocol
+  loopback-detection   Enable loopback detection per interface
+  macro                Smart ports macros
+  mdix                 Control cable crossover (MDI/MDIX)
+  negotiation          Enable auto negotiation
+  no                   Negate command
+  operation            port operation time command
+  port                 Set port definition
+  qos                  Configure QoS
+  rate-limit           Use the rate-limit interface configuration command to
+                       limit the rate of the incoming traffic. Use the no
+                       form of this command to disable rate limit.
+  security-suite       security protections
+  service-acl          Apply an ACL to particular interface.
+  service-policy       Apply a policy map to particular interface.Only one
+                       policy map per interface per direction is supported.
+  shutdown             Shutdown the selected interface
+  smartport            Set of commands to be used only in smartport macros
+  snmp                 SNMP
+  spanning-tree        Configure Spanning Tree Subsystem
+  speed                Set the transmit and receive speeds
+  storm-control        storm control parameters
+  switchport           switchport
+  traffic-shape        Configure shaper on an egress port. Use the no form of
+                       the command to disable the shaper.
+  udld                 UDLD
+  voice                Voice management.
+switch9eb4c4(config-if-range)#rate-limit
+  <100-1000000>        Specify committed-rate-kbps which is the average
+                       traffic rate in kbps.
+switch9eb4c4(config-if-range)#rate-limit 10240
+  <3000-19173960>      Specify committed-burst-byte which is the normal burst
+                       size in bytes.
+   <CR>
+switch9eb4c4(config-if-range)#rate-limit 10240 1024000
+   <CR>
+switch9eb4c4(config-if-range)#rate-limit 10240 1024000
+switch9eb4c4(config-if-range)#sha
+switch9eb4c4(config-if-range)#sha
+% Unrecognized command
+switch9eb4c4(config-if-range)#
+  authentication       Authentication methods on a port
+  back-pressure        Enable back-pressure
+  bridge               Bridge configuration subcommand
+  cdp                  CDP interface subcommands
+  channel-group        Add port to Port-channel
+  description          Interface specific description
+  do                   execute an EXEC-level command
+  dot1x                Interface Configuration Commands for 802.1x
+  duplex               Configure duplex operation
+  end                  Exit from configure mode
+  exit                 Exit from current context
+  flowcontrol          Configure flow-control mode
+  green-ethernet       Green ethernet commands
+  gvrp                 GVRP interface commands
+  help                 Description of the interactive help system
+  ip                   Global IP configuration commands
+  ipv6                 IPv6 commands
+  lacp                 Interface IEEE 802.3 link aggregation commands
+  lldp                 Configure LLDP protocol
+  loopback-detection   Enable loopback detection per interface
+  macro                Smart ports macros
+  mdix                 Control cable crossover (MDI/MDIX)
+  negotiation          Enable auto negotiation
+  no                   Negate command
+  operation            port operation time command
+  port                 Set port definition
+  qos                  Configure QoS
+  rate-limit           Use the rate-limit interface configuration command to
+                       limit the rate of the incoming traffic. Use the no
+                       form of this command to disable rate limit.
+  security-suite       security protections
+  service-acl          Apply an ACL to particular interface.
+  service-policy       Apply a policy map to particular interface.Only one
+                       policy map per interface per direction is supported.
+  shutdown             Shutdown the selected interface
+  smartport            Set of commands to be used only in smartport macros
+  snmp                 SNMP
+  spanning-tree        Configure Spanning Tree Subsystem
+  speed                Set the transmit and receive speeds
+  storm-control        storm control parameters
+  switchport           switchport
+  traffic-shape        Configure shaper on an egress port. Use the no form of
+                       the command to disable the shaper.
+  udld                 UDLD
+  voice                Voice management.
+switch9eb4c4(config-if-range)#traffic-shape
+  queue                Configure shaper on an egress queue. Use the no form
+                       of the command to disable the shaper.
+  <64-1000000>         The average traffic rate in Kbps.
+switch9eb4c4(config-if-range)#traffic-shape 10240
+  <4096-16762902>      Specify the excess burst size in bytes.
+   <CR>
+switch9eb4c4(config-if-range)#traffic-shape 10240 1024000
+   <CR>
+switch9eb4c4(config-if-range)#traffic-shape 10240 1024000
+switch9eb4c4(config-if-range)#
+switch9eb4c4(config-if-range)#
+switch9eb4c4(config-if-range)#
+switch9eb4c4(config-if-range)#
+switch9eb4c4(config-if-range)#end
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#wr
+Overwrite file [startup-config].... (Y/N)[N] ?Y
+21-Aug-2014 15:36:36 %COPY-I-FILECPY: Files Copy - source URL running-config des
+21-Aug-2014 15:36:39 %COPY-N-TRAP: The copy operation was completed successfully
+Copy succeeded
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#sh run
+config-file-header
+switch9eb4c4
+v1.4.0.88 / R800_NIK_1_4_194_194
+CLI v1.0
+set system mode switch
+
+file SSD indicator encrypted
+@
+ssd-control-start
+ssd config
+ssd file passphrase control unrestricted
+no ssd file integrity control
+ssd-control-end cb0a3fdb1f3a1af4e4430033719968c0
+!
+vlan database
+vlan 20,30,90
+exit
+voice vlan oui-table add 0001e3 Siemens_AG_phone________
+voice vlan oui-table add 00036b Cisco_phone_____________
+voice vlan oui-table add 00096e Avaya___________________
+voice vlan oui-table add 000fe2 H3C_Aolynk______________
+voice vlan oui-table add 0060b9 Philips_and_NEC_AG_phone
+voice vlan oui-table add 00d01e Pingtel_phone___________
+voice vlan oui-table add 00e075 Polycom/Veritel_phone___
+voice vlan oui-table add 00e0bb 3Com_phone______________
+hostname switch9eb4c4
+!
+interface vlan 90
+ ip address 172.30.1.4 255.255.255.0
+ no ip address dhcp
+!
+interface fastethernet1
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet2
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet3
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet4
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet5
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet6
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet7
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet8
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface gigabitethernet1
+ switchport trunk allowed vlan add 20,30,90
+!
+exit
+switch9eb4c4#conf t
+switch9eb4c4(config)#int fa5
+switch9eb4c4(config-if)#no switchport access vlan
+switch9eb4c4(config-if)#21-Aug-2014 15:39:38 %LINK-W-Down:  fa5
+21-Aug-2014 15:43:53 %LINK-I-Up:  fa5
+21-Aug-2014 15:43:57 %STP-W-PORTSTATUS: fa5: STP status Forwarding
+
+switch9eb4c4(config-if)#
+switch9eb4c4(config-if)#
+switch9eb4c4(config-if)#end
+switch9eb4c4#sh run
+config-file-header
+switch9eb4c4
+v1.4.0.88 / R800_NIK_1_4_194_194
+CLI v1.0
+set system mode switch
+
+file SSD indicator encrypted
+@
+ssd-control-start
+ssd config
+ssd file passphrase control unrestricted
+no ssd file integrity control
+ssd-control-end cb0a3fdb1f3a1af4e4430033719968c0
+!
+vlan database
+vlan 20,30,90
+exit
+voice vlan oui-table add 0001e3 Siemens_AG_phone________
+voice vlan oui-table add 00036b Cisco_phone_____________
+voice vlan oui-table add 00096e Avaya___________________
+voice vlan oui-table add 000fe2 H3C_Aolynk______________
+voice vlan oui-table add 0060b9 Philips_and_NEC_AG_phone
+voice vlan oui-table add 00d01e Pingtel_phone___________
+voice vlan oui-table add 00e075 Polycom/Veritel_phone___
+voice vlan oui-table add 00e0bb 3Com_phone______________
+hostname switch9eb4c4
+!
+interface vlan 90
+ ip address 172.30.1.4 255.255.255.0
+ no ip address dhcp
+!
+interface fastethernet1
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet2
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet3
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet4
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet5
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+!
+interface fastethernet6
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+switch9eb4c4#conf t
+switch9eb4c4(config)#int fa5
+switch9eb4c4(config-if)#switchport access vlan 90
+switch9eb4c4(config-if)#21-Aug-2014 15:50:31 %AAA-I-CONNECT: New http connection
+21-Aug-2014 15:54:41 %COPY-I-FILECPY: Files Copy - source URL running-config des
+21-Aug-2014 15:54:44 %COPY-N-TRAP: The copy operation was completed successfully
+21-Aug-2014 15:56:29 %AAA-I-DISCONNECT: User CLI session for user cisco over cond.
+
+Console baud-rate auto detection is enabled, press Enter twice to complete the d
+
+
+
+User Name:
+Detected speed: 115200
+
+
+User Name:am
+Password:
+
+User Name:admin
+Password:**********
+
+
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#sh run
+config-file-header
+switch9eb4c4
+v1.4.0.88 / R800_NIK_1_4_194_194
+CLI v1.0
+set system mode switch
+
+file SSD indicator encrypted
+@
+ssd-control-start
+ssd config
+ssd file passphrase control unrestricted
+no ssd file integrity control
+ssd-control-end cb0a3fdb1f3a1af4e4430033719968c0
+!
+vlan database
+vlan 20,30,90
+exit
+voice vlan oui-table add 0001e3 Siemens_AG_phone________
+voice vlan oui-table add 00036b Cisco_phone_____________
+voice vlan oui-table add 00096e Avaya___________________
+voice vlan oui-table add 000fe2 H3C_Aolynk______________
+voice vlan oui-table add 0060b9 Philips_and_NEC_AG_phone
+voice vlan oui-table add 00d01e Pingtel_phone___________
+voice vlan oui-table add 00e075 Polycom/Veritel_phone___
+voice vlan oui-table add 00e0bb 3Com_phone______________
+hostname switch9eb4c4
+username admin password encrypted f115568502ce04c67f8f8fc8d3e925197f195a9f privi
+ip ssh server
+!
+interface vlan 90
+ ip address 172.30.1.4 255.255.255.0
+ no ip address dhcp
+!
+interface fastethernet1
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet2
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet3
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet4
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet5
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 90
+!
+interface fastethernet6
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+switch9eb4c4#21-Aug-2014 15:57:27 %AAA-I-DISCONNECT: http connection for user ci
+
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#conf t
+switch9eb4c4(config)#int fa5
+switch9eb4c4(config-if)#no switchport access vlan
+switch9eb4c4(config-if)#switchport access vlan 20
+switch9eb4c4(config-if)#end
+switch9eb4c4#wr
+Overwrite file [startup-config].... (Y/N)[N] ?Y
+21-Aug-2014 16:00:19 %COPY-I-FILECPY: Files Copy - source URL running-config des
+21-Aug-2014 16:00:22 %COPY-N-TRAP: The copy operation was completed successfully
+Copy succeeded
+switch9eb4c4#
+switch9eb4c4#ei
+% Unrecognized command
+switch9eb4c4#exit
+21-Aug-2014 16:02:56 %AAA-I-DISCONNECT: User CLI session for user admin over cond.
+
+Console baud-rate auto detection is enabled, press Enter twice to complete the d
+
+
+
+User Name:

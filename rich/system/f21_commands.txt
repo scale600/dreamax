@@ -1,0 +1,152 @@
+
+[update the system]
+[linux]
+
+sudo apt update && sudo apt upgrade
+
+sudo apt-get update;
+sudo apt-cache search apache
+sudo apt-get install apache2;
+sudo service apache2 restart;
+sudo apt-get install htop
+sudo htop
+sudo apt-get install elinks
+elinks
+ip add
+elinks http://127.0.0.1
+sudo apt-get install libapache2-mod-auth-mysql;
+sudo apt-get install mysql-server mysql-client;
+sudo apt-get install php-common php libapache2-mod-php;
+sudo apt-get install php5-common php5 libapache2-mod-php5;
+sudo apt-get install php5-mysql;
+sudo apt-get install phpmyadmin
+sudo /etc/init.d/apache2 restart;
+sudo /etc/init.d/mysql restart;
+locate php5
+
+sudo ln -s /usr/share/phpmyadmin /var/www
+
+<!-- sudo apt-get -y install apache2 libapache2-mod-auth-mysql mysql-server mysql-client php5common php5 libapache2-mod-php5 php5-mysql; -->
+
+sudo apt update && sudo apt install lamp-server^
+
+http://localhost/info.php
+http://localhost/phpmyadmin
+http://127.0.0.1
+
+sudo nano /var/www/phpinfo.php
+<?php
+phpinfo();
+?>
+
+
+sudo service mysql reload
+
+
+[mysql]
+mysql -u root -p
+show databases;
+create database [database];
+select database();
+show tables;
+
+[linux]
+pwd
+ls -la
+cd
+mkdir
+rmdir
+rm
+touch new.txt
+man cd
+cp
+mv
+echo
+cat
+nano, vi, jed
+sudo
+df -m : available disk space
+du : disk usage of a file
+tar -cvf
+zip, unzip
+apt-get
+chmod
+hostname
+ping
+clear
+sudo halt/reboot
+
+[linux networking]
+ifconfig
+ifconfig eth0
+ifconfig eth0 192.168.50.5 netmask 255.255.255.0
+ifup eth0 : Enable eth0
+ifdown eth0 : Disable eth0
+ping 4.2.2.2 / www.google.com
+ping -c 5 www.tecmint.com
+traceroute 4.2.2.2
+netstat -r
+dig www.tecmint.com
+nslookup www.tecmint.com
+route
+route add -net 10.10.10.0/24 gw 192.168.0.1
+host www.google.com
+arp -e
+hostname 
+system-config-network : GUI
+sudo chown www-data readme.txt
+sudo chown www-data .(current directory)
+
+
+
+[linux backup]
+cat /contents/back_sh/back_log | grep Successed. | wc -l
+rsync -e ssh -av --progress --size-only 211.43.153.168:/data/XPG/XPG/ /data/XPG/XPG/
+ps -ef |grep vsftpd |wc -l
+service vsftpd restart
+./kill_vsftpd.sh
+./run_vsftpd.sh
+ftp 211.43.153.137 2121
+quit
+
+vdir
+tar cvf /dev/st0
+tar cvf /dev/st0 DSCN0455.JPG
+tar cvf /dev/st0 nsm
+mt -f /dev/st0 tell
+
+#tar cvf /dev/st0 /home ->backup
+#tar tvf /dev/st0 -> backup data 확인
+#tar xvf /dev/st0 . -> backup data restore
+
+
+SNMP(Simple Network Management Protocol)
+HP SIM(Systems Insight Manager)
+UID(Unit Identification) LED
+
+
+[mySQL]
+mysql -u'root' -p'111111' -h'localhost'
+
+CREATE DATABASE 'opentutorials' CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+use 'opentutorials';
+
+show databases;
+
+use 'opentutorials';
+
+CREATE TABLE topic (
+    id  int(11) NOT NULL AUTO_INCREMENT,
+    title  varchar(255) NOT NULL ,
+    description  text NULL ,
+    created  datetime NOT NULL ,
+    PRIMARY KEY (id)
+);
+
+show tables;
+desc 'topic';
+
+
+
+

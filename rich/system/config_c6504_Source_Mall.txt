@@ -1,0 +1,289 @@
+The_Source_M#sh run
+Building configuration...
+
+Current configuration : 6170 bytes
+!
+upgrade fpd auto
+version 12.2
+service timestamps debug uptime
+service timestamps log uptime
+no service password-encryption
+service counters max age 5
+service unsupported-transceiver
+!
+hostname The_Source_M
+!
+boot-start-marker
+boot-end-marker
+!
+enable password cisco
+!
+no aaa new-model
+call-home
+  alert-group configuration
+  alert-group diagnostic
+  alert-group environment
+  alert-group inventory
+  alert-group syslog
+ profile "CiscoTAC-1"
+   no active
+   no destination transport-method http
+   destination transport-method email
+   destination address email callhome@cisco.com
+   destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService
+   subscribe-to-alert-group diagnostic severity minor 
+   subscribe-to-alert-group environment severity minor 
+   subscribe-to-alert-group syslog severity major pattern ".*"
+   subscribe-to-alert-group configuration periodic monthly 15 12:09
+   subscribe-to-alert-group inventory periodic monthly 15 11:54
+ip subnet-zero
+!
+!
+ip dhcp excluded-address 10.1.1.2 10.1.1.50
+ip dhcp excluded-address 172.1.1.2 172.1.1.50
+!
+ip dhcp pool dyn_Static
+   network 10.1.1.0 255.255.255.0
+   default-router 10.1.1.1 
+   dns-server 64.60.0.17 64.60.0.18 
+!
+ip dhcp pool Mall_CCTV
+   network 172.1.1.0 255.255.255.0
+   default-router 172.1.1.1 
+   dns-server 64.60.0.17 64.60.0.18 
+!
+vtp domain NGP-INTERNAL-DOMAIN
+vtp mode transparent
+mls netflow interface
+no mls flow ip
+no mls flow ipv6
+mls cef error action reset
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+redundancy
+ keepalive-enable
+ mode sso
+ main-cpu
+  auto-sync running-config
+spanning-tree mode pvst
+spanning-tree extend system-id
+diagnostic cns publish cisco.cns.device.diag_results
+diagnostic cns subscribe cisco.cns.device.diag_commands
+!
+vlan internal allocation policy ascending
+vlan access-log ratelimit 2000
+!
+vlan 10,20,90 
+! 
+!
+!
+!
+!
+interface GigabitEthernet1/1
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/2
+ ip address 66.180.243.210 255.255.255.248
+ ip nat outside
+ media-type rj45
+!
+interface GigabitEthernet2/1
+ no ip address
+ shutdown
+!
+interface GigabitEthernet2/2
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/1
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/2
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/3
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/4
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/5
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/6
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/7
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/8
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/9
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/10
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/11
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/12
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/13
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/14
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/15
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/16
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/17
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/18
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/19
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/20
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/21
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/22
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/23
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/24
+ no ip address
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!         
+interface Vlan10
+ ip address 10.1.1.1 255.255.255.0
+ ip nat inside
+!
+interface Vlan20
+ ip address 172.1.1.1 255.255.255.0
+!
+interface Vlan90
+ ip address 172.100.1.1 255.255.255.0
+!
+ip nat inside source list The_Source_Mall interface GigabitEthernet1/2 overload
+ip nat inside source static tcp 172.1.1.3 443 66.180.243.211 443 extendable
+ip nat inside source static tcp 172.1.1.2 2000 66.180.243.211 2000 extendable
+ip nat inside source static tcp 172.1.1.2 2001 66.180.243.211 2001 extendable
+ip nat inside source static tcp 172.1.1.2 2002 66.180.243.211 2002 extendable
+ip nat inside source static tcp 172.1.1.3 2003 66.180.243.211 2003 extendable
+ip nat inside source static tcp 172.1.1.3 2004 66.180.243.211 2004 extendable
+ip nat inside source static tcp 172.1.1.3 2005 66.180.243.211 2005 extendable
+ip nat inside source static tcp 172.1.1.4 2006 66.180.243.211 2006 extendable
+ip nat inside source static tcp 172.1.1.4 2007 66.180.243.211 2007 extendable
+ip nat inside source static tcp 172.1.1.4 2008 66.180.243.211 2008 extendable
+ip classless
+ip route 0.0.0.0 0.0.0.0 66.180.243.209
+!
+!
+no ip http server
+no ip http secure-server
+!
+ip access-list extended The_Source_Mall
+ permit ip 10.1.1.0 0.0.0.255 any
+ permit ip 172.1.1.0 0.0.0.255 any
+!
+!
+!
+!
+control-plane
+!
+!
+dial-peer cor custom
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ password cisco
+ login
+ transport input lat pad udptn telnet rlogin ssh acercon
+line vty 5 15
+ password cisco
+ login
+ transport input lat pad udptn telnet rlogin ssh acercon
+!
+!
+end
+
+The_Source_M#

@@ -1,0 +1,98 @@
+mikrotik
+
+
+
+http://mikrotikthemes.airpoint.club/
+mikrotik hotspot login page templete
+
+
+Free Wifi Zone
+http://mikrotikthemes.airpoint.club/2017/02/free-wifi-zone.html
+
+
+PIN to WEB
+http://mikrotikthemes.airpoint.club/2017/06/pin-to-web.html
+
+
+http://www.usemynet.com/wi-fi-hotspot-pro.html
+http://www.antamedia.com/hotspot/
+https://toughnickel.com/starting-business/How-To-Make-a-WiFi-Hotspot-Business
+http://vtrural.org/programs/digital-economy/services/wifi/toolkit
+https://gconnect.wirelessg.co.za/hotspot.aspx
+http://www.whizzwifi.com/
+
+
+
+http://172.16.3.254/login
+login : hufs94
+password : 15447777
+
+http://192.168.1.100/userman
+id : admin
+pasword : (none)
+
+SSID : HotSpot_PlazaMexico
+
+ReadyVoucher
+router address : 192.168.1.100
+API port : 8728
+API user : admin
+password : (none)
+loginid/pw : (none)/(none)
+
+ftp
+172.16.3.254 (21)
+id : admin
+pw : (none)
+ftp://172.16.3.254
+
+UniFi controllor
+username : hufs94
+password : 15447777
+
+***usermanager / Winbox
+login ID : admin
+pwd : 15447777
+
+***HotSpot
+login ID : hufs94
+pwd : 15447777
+
+
+id : pmusr2q8reqsn6p
+pw : hu89brdyjf
+
+
+HotSpot admin
+id/pw:hufs94/15447777
+
+
+Mikrotik IOS
+http://10.1.1.221/
+id/pw:admin/15447777
+
+
+http://10.1.1.221/userman
+id/pw:admin/(none)
+
+
+http://192.168.0.109/
+
+
+http://192.168.0.109/userman
+id : admin
+pasword : (none)
+
+
+ssid : MikroTik-09D763
+landingpage login id : admin
+pw : newgensus
+
+
+Mikrotik IOS
+http://10.1.1.162/
+id/pw:admin/15447777
+
+
+http://172.16.0.57/
+http://172.16.0.57/phpmyadmin/

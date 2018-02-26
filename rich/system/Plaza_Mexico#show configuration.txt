@@ -1,0 +1,234 @@
+Plaza_Mexico#show configuration 
+Using 5160 out of 262136 bytes
+!
+! Last configuration change at 16:20:23 UTC Tue Feb 28 2017 by admin
+! NVRAM config last updated at 16:20:26 UTC Tue Feb 28 2017 by admin
+! NVRAM config last updated at 16:20:26 UTC Tue Feb 28 2017 by admin
+version 15.3
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+service unsupported-transceiver
+!
+hostname Plaza_Mexico
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$a6fL$dg.So2ia/tE2dX0I99WOH.
+!
+aaa new-model
+!
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone UTC -8 0
+!
+!
+!
+ip cef
+!
+!
+!
+!
+
+
+!         
+ip dhcp excluded-address 10.1.1.1 10.1.1.50
+!         
+ip dhcp pool Plaza_Mall_DHCP
+ network 10.1.1.0 255.255.255.0
+ default-router 10.1.1.1 
+ dns-server 64.60.0.17 64.60.0.18 
+ lease 7  
+!         
+ip dhcp pool Plaza_Mall_DHCP_1
+ default-router 10.1.2.1 
+ dns-server 64.60.0.17 64.60.0.18 
+ lease 7  
+!         
+!         
+!         
+ip domain name newgens.com
+no ipv6 cef
+!         
+multilink bundle-name authenticated
+!         
+!         
+!         
+!         
+!         
+voice-card 0
+!         
+!         
+!         
+!         
+!         
+!         
+!         
+!         
+license udi pid CISCO2951/K9 sn FJC1948A0DT
+license accept end user agreement
+!         
+!         
+username admin password 7 10400C0E02121C185D5679
+!         
+redundancy
+!         
+!         
+!         
+!         
+!         
+ip ssh version 2
+ip ssh pubkey-chain
+  username admin
+!         
+!         
+!         
+!         
+!         
+!         
+!         
+!         
+!         
+interface Embedded-Service-Engine0/0
+ no ip address
+ shutdown 
+!         
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!         
+interface GigabitEthernet0/0.10
+ encapsulation dot1Q 10
+!         
+interface GigabitEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 172.16.1.1 255.255.255.0 secondary
+ ip address 10.1.2.1 255.255.255.0 secondary
+ ip address 10.1.1.1 255.255.255.0
+ ip nat inside
+ ip nat enable
+ no ip virtual-reassembly in
+!         
+interface GigabitEthernet0/0.30
+ encapsulation dot1Q 30
+!         
+interface GigabitEthernet0/0.90
+ encapsulation dot1Q 90
+ ip address 172.30.1.1 255.255.255.0
+!         
+interface GigabitEthernet0/1
+ ip address 100.43.195.242 255.255.255.240
+ no ip redirects
+ ip nat outside
+ ip nat enable
+ no ip virtual-reassembly in
+ speed 1000
+ media-type sfp
+!         
+interface GigabitEthernet0/2
+ no ip address
+ shutdown 
+ duplex auto
+ speed auto
+!         
+!         
+ip forward-protocol nd
+!         
+no ip http server
+no ip http secure-server
+!         
+ip nat inside source list Internal_Plaza_Mall interface GigabitEthernet0/1 overload
+ip nat inside source static tcp 172.16.1.32 8000 100.43.195.242 2003 extendable
+ip nat inside source static udp 172.16.1.32 8000 100.43.195.242 2003 extendable
+ip nat inside source static tcp 172.16.1.33 8000 100.43.195.242 2004 extendable
+ip nat inside source static udp 172.16.1.33 8000 100.43.195.242 2004 extendable
+ip nat inside source static tcp 172.16.1.35 2009 100.43.195.242 2009 extendable
+ip nat inside source static tcp 172.16.1.35 2010 100.43.195.242 2010 extendable
+ip nat inside source static tcp 172.16.1.35 2011 100.43.195.242 2011 extendable
+ip nat inside source static tcp 172.16.1.36 2012 100.43.195.242 2012 extendable
+ip nat inside source static tcp 172.16.1.38 2015 100.43.195.242 2015 extendable
+ip nat inside source static udp 172.16.1.38 2015 100.43.195.242 2015 extendable
+ip nat inside source static tcp 172.16.1.38 2016 100.43.195.242 2016 extendable
+ip nat inside source static tcp 172.16.1.38 2017 100.43.195.242 2017 extendable
+ip nat inside source static tcp 172.16.1.44 2018 100.43.195.242 2018 extendable
+ip nat inside source static udp 172.16.1.44 2019 100.43.195.242 2019 extendable
+ip nat inside source static tcp 172.16.1.44 2020 100.43.195.242 2020 extendable
+ip nat inside source static udp 172.16.1.44 2020 100.43.195.242 2020 extendable
+ip nat inside source static tcp 172.16.1.40 2021 100.43.195.242 2021 extendable
+ip nat inside source static tcp 172.16.1.40 2022 100.43.195.242 2022 extendable
+ip nat inside source static tcp 172.16.1.40 2023 100.43.195.242 2023 extendable
+ip nat inside source static tcp 172.16.1.45 2024 100.43.195.242 2024 extendable
+ip nat inside source static tcp 172.16.1.36 5920 100.43.195.242 5920 extendable
+ip nat inside source static tcp 172.16.1.36 5921 100.43.195.242 5921 extendable
+ip nat inside source static 10.1.1.42 100.43.195.246
+ip nat inside source static 10.1.1.47 100.43.195.247
+ip nat inside source static 10.1.1.48 100.43.195.248
+ip nat inside source static 10.1.1.49 100.43.195.249
+ip nat inside source static 10.1.1.41 100.43.195.250
+ip route 0.0.0.0 0.0.0.0 100.43.195.241
+!         
+ip access-list extended Internal_Plaza_Mall
+ permit ip 10.1.1.0 0.0.0.255 any
+ permit ip 10.1.2.0 0.0.0.255 any
+!         
+logging host 72.11.232.69 transport udp port 2001
+logging host 72.11.232.69 transport tcp port 2001
+!         
+nls resp-timeout 1
+cpd cr-id 1
+!         
+access-list 99 deny   112.85.42.0 0.0.0.255
+access-list 99 deny   121.18.238.0 0.0.0.255
+access-list 99 permit any
+!         
+!         
+!         
+control-plane
+!         
+ !        
+ !        
+ !        
+!         
+!         
+mgcp behavior rsip-range tgcp-only
+mgcp behavior comedia-role none
+mgcp behavior comedia-check-media-src disable
+mgcp behavior comedia-sdp-force disable
+!         
+mgcp profile default
+!         
+!         
+!         
+!         
+!         
+gatekeeper
+ shutdown 
+!         
+!         
+!         
+line con 0
+line aux 0
+line 2    
+ no activation-character
+ no exec  
+ transport preferred none
+ transport output lat pad telnet rlogin lapb-ta mop udptn v120 ssh
+ stopbits 1
+line vty 0 4
+ transport input ssh
+line vty 5 15
+ transport input ssh
+!         
+scheduler allocate 20000 1000
+!         
+end       
+          
+Plaza_Mexico#

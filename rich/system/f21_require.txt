@@ -1,0 +1,40 @@
+Tomcat
+IBM WebSphere
+Webserver
+ecommerce
+firewalls
+routers
+VPN
+LAN/WAN
+WLAN
+Linux
+MS Server
+Cisco
+
+MS Exchange
+MS Active Directory
+
+MS Azure
+HP, DELL, IBM
+HP Blade
+Windows2008, 2012
+Ubuntu 14, 16
+EMC
+TSM 8.x(Tivoli Storage Manager)
+VMware (5.x, 6.x)
+MSSQL 2014
+postgressSQL
+Cisco/Junifer S/W, F5
+CDN (Contents Delivery Network), Akamai
+Akamai WAF(Web Application Firewall)
+IPS (Intrusion Prevention Systems) : Monitor networ traffic
+IDS (Intrusion Detection Systems)
+DBMS (Database Management System)
+
+4U HP servers 2EA
+2U HP servers 2EA
+4U ABERDEEN servers 2EA
+7U CiSCO L3 1EA
+1U CISCO L2 1EA
+1U F5 LTM 1EA
+BIG-IP Local Traffic Manager (LTM) load balancer | F5

@@ -1,0 +1,43 @@
+conf t
+
+vlan database
+vlan 20
+vlan 30
+vlan 90
+
+
+exit
+
+
+int vlan 90
+ip address 172.30.1.6 255.255.255.0
+
+
+y
+
+
+exit
+
+
+int gigabitethernet 1
+
+switchport mode trunk
+
+switchport trunk allowed vlan add 20
+switchport trunk allowed vlan add 30
+switchport trunk allowed vlan add 90
+
+exit
+
+int range FastEthernet1-8
+
+switchport mode access
+switchport access vlan 20
+
+end
+
+wr
+
+
+y
+

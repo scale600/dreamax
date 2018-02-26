@@ -1,0 +1,56 @@
+config cisco switch
+************************ Serial connect
+serial speed : 115200
+
+plazamexico
+172.30.1.3 if idf
+172.30.1.4 family idf
+172.30.1.5 verizon idf
+172.30.1.6 owl fish idf
+172.30.1.7 pcs idf
+
+user / pw : cisco / cisco
+************************ 
+
+
+conf t
+
+
+vlan database
+vlan 20
+vlan 30
+vlan 90
+
+
+exit
+
+int vlan 90
+ip address 172.30.1.6 255.255.255.0
+
+
+y
+
+
+exit
+
+int gigabitethernet 1
+
+switchport mode trunk
+
+switchport trunk allowed vlan add 20
+switchport trunk allowed vlan add 30
+switchport trunk allowed vlan add 90
+
+exit
+
+int range FastEthernet1-8
+
+switchport mode access
+switchport access vlan 20
+
+end
+
+wr
+
+
+y

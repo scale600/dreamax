@@ -1,0 +1,70 @@
+
+switch9eb4c4#sh ru
+config-file-header
+switch9eb4c4
+v1.4.0.88 / R800_NIK_1_4_194_194
+CLI v1.0
+set system mode switch
+
+file SSD indicator encrypted
+@
+ssd-control-start
+ssd config
+ssd file passphrase control unrestricted
+no ssd file integrity control
+ssd-control-end cb0a3fdb1f3a1af4e4430033719968c0
+!
+vlan database
+vlan 20,30,90
+exit
+voice vlan oui-table add 0001e3 Siemens_AG_phone________
+voice vlan oui-table add 00036b Cisco_phone_____________
+voice vlan oui-table add 00096e Avaya___________________
+voice vlan oui-table add 000fe2 H3C_Aolynk______________
+voice vlan oui-table add 0060b9 Philips_and_NEC_AG_phone
+voice vlan oui-table add 00d01e Pingtel_phone___________
+voice vlan oui-table add 00e075 Polycom/Veritel_phone___
+voice vlan oui-table add 00e0bb 3Com_phone______________
+hostname switch9eb4c4
+!
+interface vlan 90
+ ip address 172.30.1.4 255.255.255.0
+ no ip address dhcp
+!
+interface fastethernet1
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet2
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet3
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet4
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet5
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet6
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet7
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet8
+ switchport mode access
+ switchport access vlan 20
+!
+interface gigabitethernet1
+ switchport trunk allowed vlan add 20,30,90
+!
+exit
+switch9eb4c4#

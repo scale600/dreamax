@@ -1,0 +1,493 @@
+[[ 추가 문의 & 요청사항 ]]   
+#. OS 업그레이드 방법
+#. Net Bios config
+#. Ciena 장비 - Net Bios 관련 / up link 속도 제한
+#. The Source NMS PC 구매 & NMS 설치운용
+#. PlazaMexico router 접속정보
+#. PlazaMexico NMS 접속정보 및 주요 모니터링 section
+#. 광감속기
+
+
+
+ [[ Cisco router 관련 사용 tip ]] 
+The Source Mall Telnet
+66.180.243.210
+
+72.11.232.66
+id/pw : admin / newgens123
+l2 id/pw : en / richard123
+
+telnet pw : richard123
+id: en
+pw : 15447777
+ 
+#. (Cisco)광모듈 Lebel 확인방법
+ ; sh int transceiver detail
+#. (Cisco)log 확인 / 분석
+  ; show logging
+#.(Cisco) Mac 확인방법
+ ; show arp
+ 
+#.vlan 구성
+ vlan 10 (internet)
+ vlan 20 (data)-cctv
+ vlan 90 (mgmt)
+
+######. 주요 cisco commands list [router]
+ show run
+ (delete config) -----> no [config]
+ ex) no ip nat inside source static tcp 172.16.1.45 2024 100.43.195.242 2024 extendable
+ show arp
+ show arp vrf vrf-name [traffic] [ ip-address | hardware-address | interface-path-id ] [traffic] location node-id
+ clear arp
+ sh ip dhcp binding
+ sh ip dhcp conflict	
+ Plaza_Mexico#show log
+ Plaza_Mexico#sh ip route
+ sh ip route - 망이 많을때 주요 command
+ sh ip nat translations
+ show logging - log 확인방법
+ reload - reboot
+
+ enable password
+ ip dhcp pool dyn_static1
+ network 10.1.2.0 255.255.255.0
+ defualt-router 10.1.2.1
+ int vlan 10
+ ip address 10.1.2.1 255.255.255.0
+ ip access-list extended The-Source_Mall
+ permit ip 10.1.2.0 0.0.0.255 any
+ save config
+ write
+ wr
+ sh flow
+ sh ?
+
+ sh dhcp lease interface
+
+ int gi1/9
+
+ sh int status fa18
+
+show interfaces status
+
+
+######. 주요 cisco commands list [switch]
+
+sh interfaces statusport
+show interfaces counters
+PCS-IDF#sh int counters fa20
+show interface [interface] counters etherchannel.
+ucast == unicast
+bcast == broadcast
+mcast == multicast
+octet is 8 bits
+show cdp traffic
+#show int g5/1 | in up|drops
+#clear counters gigabitEthernet 5/1
+
+
+To enable an interface FastEthernet 0/1 on a CISCO switch or router, run:
+# enable
+# configure terminal
+(config)# interface FastEthernet 0/1
+(config-subif)# no shutdown
+(config-subif)# end
+# write
+
+# show interfaces FastEthernet 0/1 status
+Port    Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                     connected    15     full    100 10/100BaseTX
+
+“Shutdown” Command – Disable Interface
+# enable
+# configure terminal
+(config)# interface FastEthernet 0/1
+(config-subif)# shutdown
+(config-subif)# end
+# write
+
+# show interfaces FastEthernet 0/1 status
+Port    Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                     disabled    15     full    100 10/100BaseTX
+
+
+The "?"
+show running-configuration
+copy running-configuration startup-configuration
+show interface status
+show ip interface
+show ip route
+show version
+
+
+PCS-IDF#show interfaces 
+  access-lists         Display access lists applied on interfaces
+  advertise            Show the auto negotiation advertisement information.
+  configuration        Interface configuration
+  counters             Interface counters
+  description          Interface description
+  Port-Channel         Port-channel member ports information
+  protected-ports      protected ports information
+  status               Interface status
+  switchport           switchport
+
+
+
+
+
+
+
+  
+ #. 광레벨 monitor 방법
+ sh int transceiver detail
+ sh int transceiver
+ 광 감쇄기
+ 0.1db/km
+  
+#. MAc Address 확인방법
+ show arpshow mac-address-table int gi3/1
+
+
+
+ [CISCO]
+sh run
+sh arp
+sh user
+sh ver
+config t
+end
+wr
+ping
+exit
+erase startup-config
+reload
+shutdown
+
+
+
+ 
+  
+ 
+ [[ Ciena Switch 관련 사용 tip ]]   
+id: su
+pw : wwp
+  
+#. (Ciena)정전시 config 날아갔을때 복구방법 ex.)plazamexico
+ ; config save 해서 refresh 되지 않도록 한다.
+
+#. (Ciena)customer port 막는방법 
+ ; port disable 1
+ 
+#. (Ciena)upload / download 제한
+ ; 
+ traffic-services queuing egress-port set port 1 shaper-rate 10048 =======> 10M down
+ traffic-services queuing egress-port set port 1 shaper-rate 50240 =======> 50M down
+
+ traffic-profiling standard-profile create port 1 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged =======> 1M up
+ traffic-profiling standard-profile set port 1 profile 1 name UP1M cir 1024 eir 512 cbs 32 ebs 32 untagged =======> 1M up
+
+
+ [CIENA]
+con sh b
+exit
+configuration reset-to-factory-defaults 
+
+system security log show
+
+traffic-profiling standard-profile show statistics port 1
+
+interface remote show
+conf save
+
+port monitor
+port monitor statistics active
+port clear statistics
+port clear port <port> statistics
+po monitor total-statistics active scale kilo
+port clear statistics
+port clear port <port> statistics
+
+software show
+software license show
+port xcvr show
+
+port monitor throughput active
+port show throughput active delay 2
+port show total-statistics active delay 5
+port monitor
+
+ctl + C : break
+
+http://jona.me/2014/06/17/ciena-saos-basic/
+
+
+
+
+------------------------------------
+traffic-services queuing egress-port set port 24 shaper-rate 51200 burst-size 1024
+
+traffic-profiling standard-profile create port 24 profile 3 name DOWN50M cir 51200 eir 1024 cbs 1024 ebs 1024 vlan 10
+traffic-profiling standard-profile create port 24 profile 4 name DOWN20M cir 20480 eir 1024 cbs 32 ebs 32 vlan 20
+--------------------------------------
+
+#. 주요 commands list 
+  con sh br
+ <없음> - 허브로 쓰겠다는 의미
+ 
+ vlan show
+ con save - configuration save
+ system set host-name test
+ port set port 1-18 speed auto
+
+#. Ciena port 구성
+ port1-16 : internet
+ port17-18 : 없음
+ port19-20 : DVR
+ 
+#. port별 up/download & enable 관련
+ cir값 - upload (보장속도)
+ eir값 - upload(보장 안하는속도)
+ 
+ port disable 1
+ port enable 1
+ 
+ pr sh port 1 vlan
+
+
+configuration show
+interface show local
+user show
+user delete user user
+user create user labadmin access-level super password blah123
+user set user su password blah123
+software show
+software license show
+
+port show
+port xcvr show
+port monitor
+
+conf
+port enable port 16
+port disable port 16
+
+ port disable 1
+ port enable 1
+port show port 1
+port show statistics
+port show port capabilities
+
+show interface brief
+show interface config
+show name
+show interface <port-number>
+
+ping -c 100 -s 1000 72.11.232.66
+traceroute ip 192.168.54.241
+
+
+
+ arp - arp
+ blade - blade management
+ chassis - chassis management
+ cli - cli shell special functions
+ configuration - configuration
+ device-archive - device archive
+ dhcp - dhcp commands
+ file - file submenu
+ flow - flow management
+ interface - ip interface management
+ lldp - Link Layer Discovery Protocol
+ log - log
+ logout - Log off this system
+ ntp-client - ntp-client
+ ping - ping
+ port - port
+ reboot - reboot system
+ snmp - SNMP
+ software - software version management
+ syslog - syslog
+ system - system management
+ traceroute - traceroute a packet
+ user - user management
+ vlan - vlan
+
+
+ 
+ 
+ 
+ [[ Network 운용관련 ]] 
+#. Source Mall - 광라인 1개불량??
+ ; 교체함
+#. 광랜 불량시 조치방법
+ ; backup으로 각각 1개 line 추가로 splicing 하는것이 좋겠음.
+#. IP 충돌시 조치방법 ex.)plazamexico kickncrab, hernames
+ ; ip list 관리
+#. ddos attack
+ ; sh ip nat translations
+ NMS PC 준비해서 Network monitoring / 상황 발생시 Vendor (ATT, Telepacific 연락)
+
+
+
+
+#. DVR용도오 IP의 port 를 할당해주어야 할때 (The Source)
+config t
+ip nat inside source static tcp 172.16.1.6 2021 72.11.232.69 2021 extendable
+end
+wr
+show ru
+
+ (delete config) -----> no [config]
+ ex) no ip nat inside source static tcp 172.16.1.45 2024 100.43.195.242 2024 extendable
+
+#. DVR용도오 IP의 port 를 할당해주어야 할때 (Plazamexico)
+config t
+ip nat inside source static tcp 172.16.1.45 2024 100.43.195.242 2024 extendable
+end
+wr
+show ru
+
+ (delete config) -----> no [config]
+ ex) no ip nat inside source static tcp 172.16.1.45 2024 100.43.195.242 2024 extendable
+
+
+
+
+
+#. 공인IP 할당해주어야 하는 고객에 설정 (Plazamexico) - Planet Fitness
+config t
+ip nat inside source static 172.16.1.30 100.43.195.242
+end
+wr
+
+
+
+
+#. 공인IP 할당해주어야 하는 고객에 설정 (Plazamexico)
+config t
+ip nat inside source static 10.1.1.42 100.43.196.246
+end
+wr
+
+
+
+## CGV test
+1. original conf
+traffic-services queuing egress-port set port 1 shaper-rate 61440
+traffic-services queuing egress-port set port 24 shaper-rate 61440 burst-size 1024
+traffic-profiling standard-profile create port 1 profile 2 name UP60M cir 61440 eir 2048 cbs 32 ebs 32 untagged 
+traffic-profiling standard-profile create port 24 profile 3 name DOWN60M cir 61440 eir 2048 cbs 1024 ebs 1024 vlan 10
+
+2. port 24 삭제 / port 1 pofile name 변경
+traffic-services queuing egress-port set port 1 shaper-rate 100032
+traffic-profiling standard-profile create port 1 profile 2 name STD#2 cir 100032 eir 2048 cbs 32 ebs 32 untagged 
+
+##
+profile name 변경순서
+
+conf
+traffic-profiling disable port 1
+traffic-profiling standard-profile delete port 1 profile STD#2
+traffic-profiling standard-profile create port 1 profile 2 name UP60M cir 61440 eir 2048 cbs 32 ebs 32 untagged
+traffic-profiling enable port 1
+end
+conf save
+
+
+===========================
+
+[CE public ip 설정]
+==변경전
+
+vlan add vlan 20 port 3
+vlan remove vlan 1 port 3
+
+port set port 3 pvid 20 egress-untag-vlan 20
+
+traffic-services queuing egress-port set port 3 shaper-rate 10240
+
+traffic-profiling standard-profile create port 3 profile 1 name UP5M cir 5120 eir 512 cbs 32 ebs 32 untagged
+
+traffic-profiling enable port 3
+
+--------------------
+==변경후
+
+vlan add vlan 10 port 3
+vlan remove vlan 1 port 3
+
+port set port 3 pvid 10 egress-untag-vlan 10
+
+traffic-profiling set port 3 mode advanced
+
+traffic-profiling standard-profile create port 3 profile 1 name UP5M cir 5120 eir 512 cbs 32 ebs 32 vlan 10
+
+traffic-profiling standard-profile create port 24 profile 5 name UP30M cir 30720 eir 1024 cbs 32 ebs 32 vlan 10
+
+========================================
+
+
+
+
+[CIENA 명령어   Syntex  설명]
+Port  설정  Port enable | disable port [x]  Port up/down
+    Port set port [x] mode <default | rj45 | sfp> 3930 포트 1~4에서 설정 가능
+      3916 포트 1~2에서 설정 가능
+    Port set port [x] auto-neg <on | off> 포트 auto-nego 설정
+    Port set port [x] speed <ten | hundred | giga | ten-gig | auto> 포트의 Speed 설정
+    Port set port [x] duplex <half | full>  포트 Duplex 설정
+    Port set port [x] acceptable-frame-type <all | tagged-only | untagged-only> 수신 가능한 Frame type 설정
+    Port set port [x] max-frame-size <NUMBER: 1522 ~ 9216>  MTU size 설정
+    Port set port [x] mirror-port <on | off>    포트 Mirroring 설정
+    Port set port [y] egress-mirror [x] ingress-mirror [x]  
+    Port monitor throughput 모든 포트의 Throughput 확인
+    Port monitor port [x] statistics  해당 포트의 Statistics 확인
+  상태보기  Port show 전체 포트 상태
+    Port show port <해당포트> 포트 상테 정보
+      
+      
+      
+    Port xcvr show port [x] diagnostics SFP 광레벨 및 모듈 정보
+      
+      
+      
+[CIENA 명령어 Syntex  설명]
+Configuration Configuration show [brief]  설정된 Configuration 확인
+  Configuration list  저장된 Configuration 확인 
+  Configuration set default-save-filename 기본 Save 파일 지정
+  Configuration set default-load-filename 기본 Load 파일 지정
+  Configuration reset-to-factory-defaults 공장 초기화
+  Configuration reset-to-user-config <filename> 저장된 파일로 Reset 
+  Configuration save  설정 저장
+  Configuration save filename <string>  특정 파일명으로 현재 설정 저장
+Chassis Chassis reboot [now]  장비 reset
+  Chassis show temperature  장비의 온도 확인
+  Chassis show capabilities 장비에서 지원 기능 등을 확인
+
+
+
+[CIENA 명령어 Syntex  설명]
+System  System show date  장비에 설정된 날짜 확인
+  System show time  장비에 설정된 시간 확인
+  System show uptime  장비가 reset된 후 동작한 시간 확인
+vlan  vlan show 설정되어 있는 vlan 확인
+  vlan show vlan <number> 특정 vlan 정보 확인
+  vlan create vlan <number> 특정 vlan 생성
+  vlan add vlan <number> port [x] 특정 포트에 특정 vlan 할당
+  vlan remove vlan <number> port [x]  특정 포트에 할당된 vlan을 제거
+  vlan delete vlan <number> 특정 vlan 삭제
+Ring-protection Ring-protection show  G.8032 Global 상태 확인
+  Ring-protection logical-ring show ring <Ring Name>  G.8032 Logical Ring 상태 및 설정 확인
+  Ring-protection virtual-ring show ring <Ring Name>  G.8032 Virtual Ring 상태 및 설정 확인
+Flow  Flow mac-addr show  Mac 정보 확인
+Interface Interface route show  Routing 정보 확인
+
+
+
+[CIENA Bldg J]---- changing vlna to 10 for public ip
+vlan create vlan 10
+vlan add vlan 10 port 3
+vlan add vlan 10 port 24
+port set port 3 pvid 10 egress-untag-vlan 10
+traffic-profiling standard-profile create port 24 profile 4 name DOWN20M cir 20480 eir 1024 cbs 32 ebs 32 vlan 20

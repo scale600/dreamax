@@ -1,0 +1,256 @@
+Detected speed: 9600
+
+
+User Name:cisco
+Password:*****
+
+User Name:admin
+Password:**********
+
+switch9eb4c4#
+switch9eb4c4#23-Sep-2014 17:24:32 %LINK-W-Down:  fa5
+
+switch9eb4c4#
+switch9eb4c4#23-Sep-2014 17:26:15 %LINK-I-Up:  fa5, aggregated (1)
+23-Sep-2014 17:26:20 %STP-W-PORTSTATUS: fa5: STP status Forwarding, aggregated (1)
+
+
+switch9eb4c4#
+switch9eb4c4#23-Sep-2014 17:28:49 %LINK-W-Down:  fa5, aggregated (1)
+
+
+switch9eb4c4#
+switch9eb4c4#sh run
+config-file-header
+switch9eb4c4
+v1.4.0.88 / R800_NIK_1_4_194_194
+CLI v1.0
+set system mode switch
+
+file SSD indicator encrypted
+@
+ssd-control-start
+ssd config
+ssd file passphrase control unrestricted
+no ssd file integrity control
+ssd-control-end cb0a3fdb1f3a1af4e4430033719968c0
+!
+vlan database
+vlan 20,30,90
+exit
+voice vlan oui-table add 0001e3 Siemens_AG_phone________
+voice vlan oui-table add 00036b Cisco_phone_____________
+voice vlan oui-table add 00096e Avaya___________________
+voice vlan oui-table add 000fe2 H3C_Aolynk______________
+voice vlan oui-table add 0060b9 Philips_and_NEC_AG_phone
+voice vlan oui-table add 00d01e Pingtel_phone___________
+voice vlan oui-table add 00e075 Polycom/Veritel_phone___
+voice vlan oui-table add 00e0bb 3Com_phone______________
+hostname switch9eb4c4
+username admin password encrypted f115568502ce04c67f8f8fc8d3e925197f195a9f privilege 15
+ip ssh server
+!
+interface vlan 90
+ ip address 172.30.1.4 255.255.255.0
+ no ip address dhcp
+!
+interface fastethernet1
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet2
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet3
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet4
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet5
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet6
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+switch9eb4c4#23-Sep-2014 17:33:11 %AAA-I-DISCONNECT: User CLI session for user admin over ssh , source 172.30.1.2 destination  172.30.1.4  TERMINATED. The Telnet/SSH session may still be connected.
+
+switch9eb4c4#
+switch9eb4c4#
+switch9eb4c4#conf t
+switch9eb4c4(config)#hostname faimily
+faimily(config)#hostname family-IDF
+family-IDF(config)#end
+family-IDF#
+family-IDF#wr
+Overwrite file [startup-config].... (Y/N)[N] ?Y
+23-Sep-2014 17:34:19 %COPY-I-FILECPY: Files Copy - source URL running-config destination URL flash://startup-config
+23-Sep-2014 17:34:22 %COPY-N-TRAP: The copy operation was completed successfully
+Copy succeeded
+family-IDF#
+family-IDF#sh run
+config-file-header
+family-IDF
+v1.4.0.88 / R800_NIK_1_4_194_194
+CLI v1.0
+set system mode switch
+
+file SSD indicator encrypted
+@
+ssd-control-start
+ssd config
+ssd file passphrase control unrestricted
+no ssd file integrity control
+ssd-control-end cb0a3fdb1f3a1af4e4430033719968c0
+!
+vlan database
+vlan 20,30,90
+exit
+voice vlan oui-table add 0001e3 Siemens_AG_phone________
+voice vlan oui-table add 00036b Cisco_phone_____________
+voice vlan oui-table add 00096e Avaya___________________
+voice vlan oui-table add 000fe2 H3C_Aolynk______________
+voice vlan oui-table add 0060b9 Philips_and_NEC_AG_phone
+voice vlan oui-table add 00d01e Pingtel_phone___________
+voice vlan oui-table add 00e075 Polycom/Veritel_phone___
+voice vlan oui-table add 00e0bb 3Com_phone______________
+hostname family-IDF
+username admin password encrypted f115568502ce04c67f8f8fc8d3e925197f195a9f privilege 15
+ip ssh server
+!
+interface vlan 90
+ ip address 172.30.1.4 255.255.255.0
+ no ip address dhcp
+!
+interface fastethernet1
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet2
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet3
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet4
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet5
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet6
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet7
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface fastethernet8
+ rate-limit 10240 1024000
+ traffic-shape 10240 1024000
+ switchport mode access
+ switchport access vlan 20
+!
+interface gigabitethernet1
+ switchport trunk allowed vlan add 20,30,90
+!
+exit
+ip default-gateway 172.30.1.1
+family-IDF#
+family-IDF#
+family-IDF#23-Sep-2014 17:36:23 %LINK-I-Up:  fa8
+23-Sep-2014 17:36:27 %STP-W-PORTSTATUS: fa8: STP status Forwarding
+
+family-IDF#
+family-IDF#
+family-IDF#conf t
+family-IDF(config)#int FastEthernet 8
+family-IDF(config-if)#no switchport access
+  multicast-tv         multicast transmissions from a vlan
+  vlan                 vlan
+family-IDF(config-if)#no switchport access vlan
+   <CR>
+family-IDF(config-if)#no switchport access vlan
+family-IDF(config-if)#switchport access vlan 90
+family-IDF(config-if)#end
+family-IDF#23-Sep-2014 17:39:40 %AAA-I-CONNECT: New http connection for user admin, source 172.30.1.100 destination 172.30.1.4 ACCEPTED
+23-Sep-2014 17:40:16 %COPY-I-FILECPY: Files Copy - source URL running-config destination URL flash://startup-config
+23-Sep-2014 17:40:19 %COPY-N-TRAP: The copy operation was completed successfully
+23-Sep-2014 11:26:58 %COPY-I-FILECPY: Files Copy - source URL running-config destination URL flash://startup-config
+23-Sep-2014 11:27:02 %COPY-N-TRAP: The copy operation was completed successfully
+
+family-IDF#
+family-IDF#
+family-IDF#
+family-IDF#
+family-IDF#exit
+23-Sep-2014 11:27:51 %AAA-I-DISCONNECT: User CLI session for user admin over console , source 0.0.0.0 destination  0.0.0.0  TERMINATED. The Telnet/SSH session may still be connected.
+
+Console baud-rate auto detection is enabled, press Enter twice to complete the detection process
+¦¦
+
+
+
+
+######### laptop IP를 172.30.1.100으로 설정 해주세
+######### 마스크 255.255.255.0
+######### 게이트웨이 설정하지 마시고요..
+
+######### browser 접속 http://172.30.1.4 (family idf cisco switch ip)
+######### id&pw : admin / richard123
+
+######### security / tcp/udp service / 
+######### telnet service (check)
+######### ssh service (check)
+######### save
+######### save (above)
+
+######### administration / copy/save configuration
+######### apply
+######### done
+
+######### administration / Time Setting
+######### local time : 
+######### Time zone offset : UTC-8:00
+
+######### administration / copy/save configuration
+######### apply
+######### done
+
+
+
+
+

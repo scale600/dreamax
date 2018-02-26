@@ -1,0 +1,61 @@
+대전광역시 동구 인동 어진마을아파트 104동 1903호
+이진희 010-9802-0025
+
+
+UniFi Switch 24 POE 250W Unboxing And Quick Start Guide (US-24-250W)
+
+
+Ringcentral Account Number:	(408) 475-9998
+Ringcentral umber (657) 529-7413
+Ringcentral umber (800) 647-6856
+
+Ringcentral Additional Toll-Free Number - (844) 532-3701
+
+
+
+JPMORGAN CHASE BANK
+계좌 Account 920428315
+Swift Code : CHASUS33 / Routing 322271627
+
+
+
+
+WHMCS
+admin
+richardlee@newgens.com
+
+Installed to: newgens.com/mgmt
+Username: admin
+Password: 2Q3pLvoue22s2x9
+
+
+bob.wagner
+
+
+https://localhost:8443/manage/site/default/dashboard
+id : admin
+pw : newgenscgv
+richardlee@newgens.com
+
+
+https://account.ubnt.com/login
+Admin Name : admin
+Enable Cloud Access for : richardlee@newgens.com
+
+
+http://10.1.1.64:8080/inform
+
+
+80:2a:a8:ad:9e
+admin/newgenscgv
+id:ubnt/pw:ubnt
+
+1-1A
+2-B4
+3-85
+4-F6
+5-C2
+6-2A
+7-C4
+8-D2
+9-8A

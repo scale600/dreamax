@@ -1,0 +1,414 @@
+Basic Cisco IOS Commands and Descriptions
+Suggested pre-reading
+»Cisco Forum FAQ »Straight-forward way to configure Cisco router: Introduction to CLI
+
+CCNA level Cisco Commands and Descriptions
+
+Following is a list of commands that are applicable to most IOS-based equipments such as routers and switches. Check out the following links for full commands.
+
+IOS Commands 12.4 version on Routers
+IOS and Catalyst OS Commands on 6500 series Switches
+IOS Commands 12.2 version on 4500 series Switches
+IOS Commands 12.2 version on 3560 series Switches
+
+? Gives you a help screen
+
+0.0.0.0 255.255.255.255 A wildcard command; same as the any command
+
+access-class Applies a standard IP access list to a VTY line
+
+access-list Creates a list of tests to filter the networks 9
+
+any Specifies any host or any network; same as the 0.0.0.0 255.255.255.255 command
+
+Backspace Deletes a single character
+
+bandwidth Sets the bandwidth on a serial interface 
+
+banner Creates a banner for users who log into the router
+
+cdp enable Turns on CDP on an individual interface 
+
+cdp holdtime Changes the holdtime of CDP packets 
+
+cdp run Turns on CDP on a router
+
+cdp timer Changes the CDP update timer 
+
+clear counters Clears the statistics from an interface 
+
+clear line Clears a connection connected via Telnet to your router
+
+clear mac-address-table Clears the filter table created dynamically by the switch
+
+clock rate Provides clocking on a serial DCE interface 
+
+config memory Copies the startup-config to running-config
+
+config network Copies a configuration stored on a TFTP host to running-config
+
+config terminal Puts you in global configuration mode and changes the running-config
+
+config-register Tells the router how to boot and to change the configuration register setting
+
+copy flash tftp Copies a file from flash memory to a TFTP host
+
+copy run start Short for copy running-config startup-config; places a configuration into NVRAM
+
+copy run tftp Copies the running-config file to a TFTP host
+
+copy tftp flash Copies a file from a TFTP host to flash memory
+
+copy tftp run Copies a configuration from a TFTP host to the running-config file
+
+Ctrl+A Moves your cursor to the beginning of the line 
+
+Ctrl+D Deletes a single character
+
+Ctrl+E Moves your cursor to the end of the line 
+
+Ctrl+F Moves forward one character
+
+Ctrl+R Redisplays a line
+
+Ctrl+Shift+6, then X (keyboard combination) Returns you to the originating router when you telnet to numerous routers
+
+Ctrl+U Erases a line
+
+Ctrl+W Erases a word 
+
+Ctrl+Z Ends configuration mode and returns to EXEC
+
+debug dialer Shows you the call setup and teardown procedures
+
+debug frame-relay lmi Shows the lmi exchanges between the router and the Frame Relay switch
+
+debug ip igrp events Provides a summary of the IGRP routing information running on the network
+
+debug ip igrp transactions Shows message requests from neighbor routers asking for an update and the broadcasts sent from your router to that neighbor router
+
+debug ip rip Sends console messages displaying information about RIP packets being sent and received on a router interface
+
+debug ipx Shows the RIP and SAP information as it passes through the router
+
+debug isdn q921 Shows layer-2 processes
+
+debug isdn q931 Shows layer-3 processes
+
+delete nvram Deletes the contents of NVRAM on a 1900 switch
+
+delete vtp Deletes VTP configurations from a switch 
+
+description Sets a description on an interface 
+
+dialer idle-timeout number Tells the BRI line when to drop if no interesting traffic is found
+
+dialer list number protocol protocol permit/deny Specifies interesting traffic for a DDR link
+
+dialer load-threshold number inbound/outbound/either Sets the parameters that describe when the second BRI comes up on an ISDN link
+
+dialer map protocol address name hostname number Used instead of a dialer string to provide more security in an ISDN network
+
+dialer string Sets the phone number to dial for a BRI interface
+
+disable Takes you from privileged mode back to user mode
+
+disconnect Disconnects a connection to a remote router from the originating router
+
+duplex Sets the duplex of an interface
+
+enable Puts you into privileged mode
+
+enable password Sets the unencrypted enable password
+
+enable password level 1 Sets the user mode password
+
+enable password level 15 Sets the enable mode password
+
+enable secret Sets the encrypted enable secret password. Supersedes the enable password if set
+
+encapsulation Sets the frame type used on an interface
+
+encapsulation frame-relay Changes the encapsulation to Frame Relay on a serial link
+
+encapsulation frame-relay ietf Sets the encapsulation type to the Internet Engineering Task Force (IETF); connects Cisco routers to off-brand routers 
+
+encapsulation hdlc Restores the default encapsulation of HDLC on a serial link
+
+encapsulation isl 2 Sets ISL routing for VLAN 
+
+encapsulation ppp Changes the encapsulation on a serial link to PPP
+
+erase startup Deletes the startup-config 
+
+erase startup-config Deletes the contents of NVRAM on a router
+
+Esc+B Moves back one word
+
+Esc+F Moves forward one word
+
+exec-timeout Sets the timeout in seconds and minutes for the console connection
+
+exit Disconnects a connection to a remote router via Telnet
+
+frame-relay interface-dlci Configures the PVC address on a serial interface or subinterface
+
+frame-relay lmi-type Configures the LMI type on a serial link
+
+frame-relay map protocol address Creates a static mapping for use with a Frame Relay network
+
+Host Specifies a single host address
+
+hostname Sets the name of a router or a switch
+
+int e0.10 Creates a subinterface
+
+int f0/0.1 Creates a subinterface
+
+interface Puts you in interface configuration mode; also used with show commands
+
+interface e0/5 Configures Ethernet interface 
+
+interface ethernet 0/1 Configures interface e0/1 
+
+interface f0/26 Configures Fast Ethernet interface 26 
+
+interface fastethernet 0/0 Puts you in interface configuration mode for a Fast Ethernet port; also used with show commands
+
+interface fastethernet 0/0.1 Creates a subinterface 
+
+interface fastethernet 0/26 Configures interface f0/26
+
+interface s0.16 multipoint Creates a multipoint subinterface on a serial link that can be used with Frame Relay networks
+
+interface s0.16 point-to-point Creates a point-to-point subinterface on a serial link that can be used with Frame Relay
+
+interface serial 5 Puts you in configuration mode for interface serial 5 and can be used for show commands
+
+ip access-group Applies an IP access list to an interface
+
+ip address Sets an IP address on an interface or a switch
+
+ip classless A global configuration command used to tell a router to forward packets to a default route when the destination network is not in the routing table
+
+ip default-gateway Sets the default gateway of the switch
+
+ip domain-lookup Turns on DNS lookup (which is on by default)
+
+ip domain-name Appends a domain name to a DNS lookup
+
+ip host Creates a host table on a router
+
+ip name-server Sets the IP address of up to six DNS servers
+
+IP route Creates static and default routes on a router 
+
+ipx access-group Applies an IPX access list to an interface
+
+ipx input-sap-filter Applies an inbound IPX SAP filter to an interface
+
+ipx network Assigns an IPX network number to an interface
+
+ipx output-sap-filter Applies an outbound IPX SAP filter to an interface
+
+ipx ping A Packet Internet Groper used to test IPX packet on an internetwork
+
+ipx routing Turns on IPX routing
+
+isdn spid1 Sets the number that identifies the first DS0 to the ISDN switch
+
+isdn spid2 Sets the number that identifies the second DS0 to the ISDN switch
+
+isdn switch-type Sets the type of ISDN switch that the router will communicate with; can be set at interface level or global configuration mode 
+
+K Used at the startup of the 1900 switch and puts the switch into CLI mode
+
+line Puts you in configuration mode to change or set your user mode passwords
+
+line aux Puts you in the auxiliary interface configuration mode
+
+line console 0 Puts you in console configuration mode
+
+line vty Puts you in VTY (Telnet) interface configuration mode
+
+logging synchronous Stops console messages from overwriting your command-line input
+
+logout Logs you out of your console session
+
+mac-address-table permanent Makes a permanent MAC address entry in the filter database
+
+mac-address-table restricted static Sets a restricted address in the MAC filter database to allow only the configured interfaces to communicate with the restricted address
+
+media-type Sets the hardware media type on an interface
+
+network Tells the routing protocol what network to advertise
+
+no cdp enable Turns off CDP on an individual interface
+
+no cdp run Turns off CDP completely on a router 
+
+no inverse-arp Turns off the dynamic IARP used with Frame Relay; static mappings must be configured
+
+no ip domain-lookup Turns off DNS lookup 
+
+no ip host Removes a hostname from a host table 
+
+No IP route Removes a static or default route 
+
+no shutdown Turns on an interface
+
+o/r 0x2142 Changes a 2501 to boot without using the contents of NVRAM
+
+ping Tests IP connectivity to a remote device
+
+port secure max-mac-count Allows only the configured amount of devices to attach and work on an interface
+
+ppp authentication chap Tells PPP to use CHAP authentication
+
+ppp authentication pap Tells PPP to use PAP authentication
+
+router igrp as Turns on IP IGRP routing on a router
+
+router rip Puts you in router rip configuration mode 
+
+secondary Adds a second IPX network on the same physical interface
+
+Service password-encryption Encrypts the user mode and enable password
+
+show access-list Shows all the access lists configured on the router
+
+show access-list 110 Shows only access list 110 
+
+show cdp Displays the CDP timer and holdtime frequencies
+
+show cdp entry * Same as show cdp neighbor detail, but does not work on a 1900 switch
+
+show cdp interface Shows the individual interfaces enabled with CDP
+
+show cdp neighbor Shows the directly connected neighbors and the details about them
+
+show cdp neighbor detail Shows the IP address and IOS version and type, and includes all of the information from the show cdp neighbor command
+
+show cdp traffic Shows the CDP packets sent and received on a device and any errors
+
+Show controllers s 0 Shows the DTE or DCE status of an interface
+
+show dialer Shows the number of times the dialer string has been reached, the idle-timeout values of each B channel, the length of call, and the name of the router to which the interface is connected
+
+show flash Shows the files in flash memory 
+
+show frame-relay lmi Shows the LMI type on a serial interface
+
+show frame-relay map Shows the static and dynamic Network layer-to-PVC mappings
+
+show frame-relay pvc Shows the configured PVCs and DLCI numbers configured on a router
+
+show history Shows you the last 10 commands entered by default
+
+show hosts Shows the contents of the host table 
+
+show int f0/26 Shows the statistics of f0/26 
+
+show inter e0/1 Shows the statistics of interface ethernet 0/1
+
+show interface s0 Shows the statistics of interface serial 0
+
+show ip Shows the IP configuration of the switch 
+
+show ip access-list Shows only the IP access lists 
+
+show ip interface Shows which interfaces have IP access lists applied
+
+show ip protocols Shows the routing protocols and timers associated with each routing protocol configured on a router
+
+show ip route Displays the IP routing table 
+
+show ipx access-list Shows the IPX access lists configured on a router
+
+show ipx interface Shows the RIP and SAP information being sent and received on an individual interface; also shows the IPX address of the interface
+
+show ipx route Shows the IPX routing table 
+
+show ipx servers Shows the SAP table on a Cisco router
+
+show ipx traffic Shows the RIP and SAP information sent and received on a Cisco router
+
+show isdn active Shows the number called and whether a call is in progress
+
+show isdn status Shows if your SPIDs are valid and if you are connected and communicating with the provider's switch
+
+show mac-address-table Shows the filter table created dynamically by the switch
+
+show protocols Shows the routed protocols and network addresses configured on each interface
+
+show run Short for show running-config; shows the configuration currently running on the router
+
+show sessions Shows your connections via Telnet to remote devices
+
+show snmp Gives you the router's serial number as the "chassis" output
+
+show start Short for show startup-config; shows the backup configuration stored in NVRAM
+
+show terminal Shows you your configured history size 
+
+show trunk A Shows the trunking status of port 26 
+
+show trunk B Shows the trunking status of port 27 
+
+show version a show hardware command equivalent, which gives the IOS information of the switch, as well as the uptime and base Ethernet address
+
+show vlan Shows all configured VLANs App. 
+
+show vlan-membership Shows all port VLAN assignments
+
+show vtp Shows the VTP configuration of a switch 
+
+shutdown Puts an interface in administratively down mode
+
+Tab Finishes typing a command for you 
+
+telnet Connects, views, and runs programs on a remote device
+
+terminal history size Changes your history size from the default of 10 up to 256
+
+trace Tests a connection to a remote device and shows the path it took through the internetwork to find the remote device
+
+traffic-share balanced Tells the IGRP routing protocol to share links inversely proportional to the metrics
+
+traffic-share min Tells the IGRP routing process to use routes that have only minimum costs
+
+trunk auto Sets the port to auto trunking mode 
+
+trunk on Sets a port to permanent trunking mode 
+
+username name password password Creates usernames and passwords for authentication on a Cisco router
+
+variance Controls the load balancing between the best metric and the worst acceptable metric
+
+vlan 2 name Sales Creates a VLAN 2 named Sales 
+
+vlan-membership static 2 Assigns a static VLAN to a port
+
+vtp client Sets the switch to be a VTP client
+
+vtp domain Sets the domain name for the VTP configuration
+
+vtp password Sets a password on the VTP domain 
+
+vtp pruning enable Makes the switch a pruning switch
+
+vtp server Sets the switch to be a VTP server
+
+
+CISCO commands list
+#1: The "?"
+#2: show running-configuration
+#4: show interface
+#5: show ip interface
+#6: config terminal, enable, interface, and router
+#7: no shutdown
+#8: show ip route
+#9: show version
+#10: debug
+
+

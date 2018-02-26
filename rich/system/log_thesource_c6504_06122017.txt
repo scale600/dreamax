@@ -1,0 +1,39 @@
+Firmware compiled 19-Dec-07 10:56 by integ Build [100]
+
+
+00:00:04: %SYS-CFC3-5-RESTART: System restarted --
+Cisco IOS Software, c6lc2 Software (c6lc2-SP-M), Version 12.2(33)SXH1, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2008 by Cisco Systems, Inc.
+Compiled Thu 17-Jan-08 01:55 by prod_rel_team
+Jun 12 17:53:48.761: CFC3: Currently running ROMMON from S (Gold) region
+3w4d: %DIAG-SP-6-RUN_MINIMUM: Module 3: Running Minimal Diagnostics...
+3w4d: %DIAG-SP-6-DIAG_OK: Module 3: Passed Online Diagnostics
+3w4d: %PM_SCP-SP-3-TRANSCEIVER_UNSUPPORTED: Unsupported transceiver in LAN port 3/1
+3w4d: %PM_SCP-SP-3-TRANSCEIVER_UNSUPPORTED: Unsupported transceiver in LAN port 3/2
+3w4d: %PM_SCP-SP-3-TRANSCEIVER_UNSUPPORTED: Unsupported transceiver in LAN port 3/3
+3w4d: %PM_SCP-SP-3-TRANSCEIVER_UNSUPPORTED: Unsupported transceiver in LAN port 3/4
+3w4d: %PM_SCP-SP-3-TRANSCEIVER_UNSUPPORTED: Unsupported transceiver in LAN port 3/5
+3w4d: %PM_SCP-SP-3-TRANSCEIVER_UNSUPPORTED: Unsupported transceiver in LAN port 3/6
+3w4d: %PM_SCP-SP-3-TRANSCEIVER_UNSUPPORTED: Unsupported transceiver in LAN port 3/7
+3w4d: %PM_SCP-SP-3-TRANSCEIVER_UNSUPPORTED: Unsupported transceiver in LAN port 3/8
+3w4d: %PM_SCP-SP-3-TRANSCEIVER_UNSUPPORTED: Unsupported transceiver in LAN port 3/9
+3w4d: %PM_SCP-SP-3-TRANSCEIVER_UNSUPPORTED: Unsupported transceiver in LAN port 3/10
+3w4d: %PM_SCP-SP-3-TRANSCEIVER_UNSUPPORTED: Unsupported transceiver in LAN port 3/11
+3w4d: %PM_SCP-SP-3-TRANSCEIVER_UNSUPPORTED: Unsupported transceiver in LAN port 3/12
+3w4d: %OIR-SP-6-INSCARD: Card inserted in slot 3, interfaces are now online
+3w4d: %PIM-5-DRCHG: DR change from neighbor 0.0.0.0 to 10.1.1.1 on interface Vlan20
+3w4d: %PFREDUN-SP-4-PHYSMEM_MISMATCH: Asymmetrical redundant configuration: Active SP has (524288/65536K) memory, Standby has (458720/65536K).
+3w4d: %PFREDUN-SP-4-PHYSMEM_MISMATCH: Asymmetrical redundant configuration: Active RP has (524288/65536K) memory, Standby has (458720/65536K).
+3w4d: %PFREDUN-SP-4-VERSION_MISMATCH: Defaulting to RPR mode (Different software versions)
+3w4d: %PFREDUN-SP-6-ACTIVE: Standby initializing for RPR mode
+3w4d: %SYS-SP-3-LOGGER_FLUSHED: System was paused for 00:00:00 to ensure console debugging output.
+
+3w4d: %PFINIT-SP-5-CONFIG_SYNC: Sync'ing the startup configuration to the standby Router.
+3w4d: %FABRIC-SP-5-CLEAR_BLOCK: Clear block option is off for the fabric in slot 2.
+3w4d: %FABRIC-SP-5-FABRIC_MODULE_BACKUP: The Switch Fabric Module in slot 2 became standby
+3w4d: %DIAG-SP-6-RUN_MINIMUM: Module 2: Running Minimal Diagnostics...
+3w4d: %DIAG-SP-6-DIAG_OK: Module 2: Passed Online Diagnostics
+3w4d: %OIR-SP-6-INSCARD: Card inserted in slot 2, interfaces are now online
+The_Source#
+The_Source#

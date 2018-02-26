@@ -1,0 +1,27 @@
+
+
+https://supportforums.cisco.com/document/12726506/auto-reload-router-weekly-basis-using-kron-scheduler
+Auto Reload Router on a weekly basis using KRON scheduler.
+
+
+Config terminal
+Router (config)# kron policy-list reload-weekly 
+Router(config-kron-policy)# cli reload ==> This “reload” what cli command you would like to execute here we are doing reload 
+Router (config-kron-policy)# exit
+Next, create a kron occurrence, in which you tell the router when and how often you want to run this policy list (i.e., group of commands). Here's an example:
+Router (config)# kron occurrence reload-weekly at 07:00 Mon recurring ==> Specify the date and day (if you want to do it on recurring type recurring) 
+Router(config-kron-occurrence)# policy-list reload-weekly 
+Router# show kron schedule
+Kron Occurrence Schedule
+Reload-weekly inactive, will run again in 6 days 10:52:57 at 7 :00 on Mon
+
+
+
+Config terminal
+Router(config)# kron policy-list reload-weekly 
+Router(config-kron-policy)# cli reload 
+Router(config-kron-policy)# exit
+
+Router(config)# kron occurrence reload-weekly at 07:00 Mon recurring
+Router(config-kron-occurrence)# policy-list reload-weekly 
+Router# show kron schedule

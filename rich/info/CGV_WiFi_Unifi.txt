@@ -1,0 +1,22 @@
+We need to use putty to SSH into the device. You can SSH into your device using PuTTY for Windows or Console on MAC OS X.
+
+For Windows:
+1) Download PuTTY (http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html, use it under your own risk!)
+2) Enter Hostname IP address (by default is 192.168.1.20), leave port as default and make sure you've selected protocol SSH
+3) Press "Enter" button
+4) Accept the certificate, then enter your username and password (by default credentials are ubnt in both cases) and press Enter key
+5) If it works properly you will see XM5.x and a $ symbol, there you can enter the commands you want to use.
+
+For MAC OS:
+1) Open Terminal (Console) under Program and Utilities
+2) Enter command "ssh -l (USERNAME) (IP ADDRESS)", by default username is ubnt and IP address 192.168.1.20, so enter "ssh -l ubnt 192.168.1.20"
+3) Type Yes to accept the certificate, and press Enter key.
+4) Enter your device's password, by default it's "ubnt".
+
+After that, please try setting the inform URL by following these steps:
+
+- SSH into the device and issue ‘syswrapper.sh restore-default’ to get back to factory settings.
+- SSH into the device and type: mca-cli
+- Next type: set-inform http://ip-of-controller:8080/inform
+
+Make sure to enter the set-inform command multiple times.

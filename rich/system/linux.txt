@@ -1,0 +1,11 @@
+
+PHP, SQL, APATCHE installation
+
+sudo apt-get -y install apache2 libapache2-mod-auth-mysql mysql-server mysql-client php5-common php5 libapache2-mod-php5 php5-mysql;
+
+
+tar xvfzp xxx.tar.gz;
+unzip ***.zip
+
+
+

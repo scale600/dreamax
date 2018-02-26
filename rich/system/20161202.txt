@@ -1,0 +1,2053 @@
+service counters max age 5
+service unsupported-transceiver
+!
+hostname Router
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$gxT4$CJA9zTtfq.P0HtgVUMtul/
+!
+no aaa new-model
+call-home
+  alert-group configuration
+  alert-group diagnostic
+  alert-group environment
+  alert-group inventory
+  alert-group syslog
+ profile "CiscoTAC-1"
+   no active
+   no destination transport-method http
+   destination transport-method email
+   destination address email callhome@cisco.com
+   destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService
+   subscribe-to-alert-group diagnostic severity minor
+   subscribe-to-alert-group environment severity minor
+   subscribe-to-alert-group syslog severity major pattern ".*"
+   subscribe-to-alert-group configuration periodic monthly 15 12:09
+   subscribe-to-alert-group inventory periodic monthly 15 11:54
+ip subnet-zero
+!
+!
+ip dhcp excluded-address 10.1.1.2 10.1.1.50
+ip dhcp excluded-address 172.1.1.2 172.1.1.50
+!
+ip dhcp pool dyn_Static
+   network 10.1.1.0 255.255.255.0
+   default-router 10.1.1.1
+   dns-server 64.60.0.17 64.60.0.18
+!
+ip dhcp pool Mall_CCTV
+   network 172.1.1.0 255.255.255.0
+   default-router 172.1.1.1
+   dns-server 64.60.0.17 64.60.0.18
+!
+ip multicast-routing
+vtp domain NGP-INTERNAL-DOMAIN
+vtp mode transparent
+mls netflow interface
+no mls flow ip
+no mls flow ipv6
+mls cef error action reset
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+redundancy
+ keepalive-enable
+ mode sso
+ main-cpu
+  auto-sync running-config
+spanning-tree mode pvst
+spanning-tree extend system-id
+diagnostic cns publish cisco.cns.device.diag_results
+diagnostic cns subscribe cisco.cns.device.diag_commands
+!
+vlan internal allocation policy ascending
+vlan access-log ratelimit 2000
+!
+vlan 10,20,90
+!
+!
+!
+!
+!
+interface GigabitEthernet1/1
+ ip address 66.180.243.210 255.255.255.248
+ ip nat outside
+ ip pim sparse-mode
+ speed nonegotiate
+!
+interface GigabitEthernet1/2
+ switchport
+ switchport access vlan 10
+ switchport mode access
+ media-type rj45
+!
+interface GigabitEthernet2/1
+ no ip address
+ shutdown
+!
+interface GigabitEthernet2/2
+ switchport
+ switchport access vlan 20
+ switchport mode access
+ media-type rj45
+!
+interface GigabitEthernet3/1
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/2
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/3
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/4
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/5
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/6
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/7
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/8
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/9
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/10
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/11
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/12
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/13
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/14
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/15
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/16
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/17
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/18
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/19
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/20
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/21
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/22
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/23
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/24
+ no ip address
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ ip address 10.1.1.1 255.255.255.0
+ ip nat inside
+!
+interface Vlan20
+ ip address 172.1.1.1 255.255.255.0
+ ip nat inside
+ ip pim sparse-mode
+ shutdown
+!
+interface Vlan90
+ ip address 172.100.1.1 255.255.255.0
+ shutdown
+!
+ip nat inside source list The_Source_Mall interface GigabitEthernet1/1 overload
+ip nat inside source static tcp 172.1.1.2 2000 66.180.243.211 2000 extendable
+ip nat inside source static tcp 172.1.1.2 2001 66.180.243.211 2001 extendable
+ip nat inside source static tcp 172.1.1.2 2002 66.180.243.211 2002 extendable
+ip nat inside source static tcp 172.1.1.3 2003 66.180.243.211 2003 extendable
+ip nat inside source static tcp 172.1.1.3 2004 66.180.243.211 2004 extendable
+ip nat inside source static tcp 172.1.1.3 2005 66.180.243.211 2005 extendable
+ip nat inside source static tcp 172.1.1.4 2006 66.180.243.211 2006 extendable
+ip nat inside source static tcp 172.1.1.4 2007 66.180.243.211 2007 extendable
+ip nat inside source static tcp 172.1.1.4 2008 66.180.243.211 2008 extendable
+ip classless
+ip route 0.0.0.0 0.0.0.0 66.180.243.209
+!
+!
+no ip http server
+no ip http secure-server
+!
+ip access-list extended The_Source_Mall
+ permit ip 10.1.1.0 0.0.0.255 any
+ permit ip 172.1.1.0 0.0.0.255 any
+!
+!
+!
+!
+control-plane
+!
+!
+dial-peer cor custom
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ login
+ transport input lat pad udptn telnet rlogin ssh acercon
+line vty 5 15
+ login
+ transport input lat pad udptn telnet rlogin ssh acercon
+!
+!
+end
+
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#ip acc
+Router(config)#ip acce
+Router(config)#ip access-list ex
+Router(config)#ip access-list extended The_Source_Mall
+Router(config-ext-nacl)#per
+Router(config-ext-nacl)#permit ip 172.100.1.0 0.0.0.255 any ?
+  dscp        Match packets with given dscp value
+  fragments   Check non-initial fragments
+  log         Log matches against this entry
+  log-input   Log matches against this entry, including input interface
+  option      Match packets with given IP Options value
+  precedence  Match packets with given precedence value
+  reflect     Create reflexive access list entry
+  time-range  Specify a time-range
+  tos         Match packets with given TOS value
+  <cr>
+
+Router(config-ext-nacl)#permit ip 172.100.1.0 0.0.0.255 any
+Router(config-ext-nacl)#end
+Router#
+Router#
+Router#
+Router#
+Router#
+Router#
+1d22h: %SYS-5-CONFIG_I: Configured from console by console
+Router#
+Router#
+Router#
+Router#
+Router#
+Router#
+Router#
+Router#ping 172.100.1.2
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.2, timeout is 2 seconds:
+.....
+Success rate is 0 percent (0/5)
+Router#ping 172.100.1.12
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.12, timeout is 2 seconds:
+..
+Success rate is 0 percent (0/2)
+Router#
+Router#
+Router#
+Router#
+Router#sh int gi1/1
+GigabitEthernet1/1 is up, line protocol is up (connected)
+  Hardware is C6k 1000Mb 802.3, address is f866.f26d.c740 (bia f866.f26d.c740)
+  Internet address is 66.180.243.210/29
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 1000Mb/s
+  input flow-control is off, output flow-control is on
+  Clock mode is auto
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:00, output 00:00:01, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 676000 bits/sec, 62 packets/sec
+  5 minute output rate 42000 bits/sec, 48 packets/sec
+  L2 Switched: ucast: 56811 pkt, 5047576 bytes - mcast: 80512 pkt, 5152808 bytes
+  L3 in Switched: ucast: 617324 pkt, 910709699 bytes - mcast: 0 pkt, 0 bytes mcast
+  L3 out Switched: ucast: 594114 pkt, 47277133 bytes mcast: 0 pkt, 0 bytes
+     767483 packets input, 921878721 bytes, 0 no buffer
+
+Router#sh int gi1/2
+GigabitEthernet1/2 is down, line protocol is down (notconnect)
+  Hardware is C6k 1000Mb 802.3, address is 001f.6c77.1c25 (bia 001f.6c77.1c25)
+  MTU 1500 bytes, BW 100000 Kbit, DLY 10 usec,
+     reliability 255/255, txload 0/255, rxload 0/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Auto-duplex, Auto-speed
+  Media-type configured as RJ45 connector
+  input flow-control is off, output flow-control is off
+  Clock mode is auto
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 1d21h, output 1d21h, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     10203 packets input, 1291407 bytes, 0 no buffer
+     Received 2424 broadcasts (742 multicasts)
+     0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+
+Router#sh int gi3/1
+GigabitEthernet3/1 is up, line protocol is up (connected)
+  Hardware is C6k 1000Mb 802.3, address is 0025.847b.4880 (bia 0025.847b.4880)
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 1000Mb/s
+  input flow-control is off, output flow-control is off
+  Clock mode is auto
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:26, output 00:00:22, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 1000 bits/sec, 1 packets/sec
+     100454 packets input, 9709472 bytes, 0 no buffer
+     Received 100454 broadcasts (94953 multicasts)
+     0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+
+Router#sh int gi3/2
+GigabitEthernet3/2 is up, line protocol is up (connected)
+  Hardware is C6k 1000Mb 802.3, address is 0025.847b.4881 (bia 0025.847b.4881)
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 1000Mb/s
+  input flow-control is off, output flow-control is off
+  Clock mode is auto
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:24, output 00:00:24, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 2000 bits/sec, 2 packets/sec
+     100458 packets input, 9330617 bytes, 0 no buffer
+     Received 100458 broadcasts (94956 multicasts)
+     0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+
+Router#sh int gi3/3
+GigabitEthernet3/3 is up, line protocol is up (connected)
+  Hardware is C6k 1000Mb 802.3, address is 0025.847b.4882 (bia 0025.847b.4882)
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 1000Mb/s
+  input flow-control is off, output flow-control is off
+  Clock mode is auto
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:23, output 00:00:09, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 2000 bits/sec, 2 packets/sec
+     100458 packets input, 9655478 bytes, 0 no buffer
+     Received 100458 broadcasts (94955 multicasts)
+     0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+
+Router#sh int gi3/4
+GigabitEthernet3/4 is up, line protocol is up (connected)
+  Hardware is C6k 1000Mb 802.3, address is 0025.847b.4883 (bia 0025.847b.4883)
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 1000Mb/s
+  input flow-control is off, output flow-control is off
+  Clock mode is auto
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:08, output 00:00:27, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/2000/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 2000 bits/sec, 2 packets/sec
+     94925 packets input, 8660607 bytes, 0 no buffer
+     Received 94925 broadcasts (89422 multicasts)
+     0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 0 multicast, 0 pause input
+     0 input packets with dribble condition detected
+
+Router#sh arp
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  10.1.1.1                -   f866.f26d.c740  ARPA   Vlan10
+Internet  10.1.1.54              31   0050.b60f.45ca  ARPA   Vlan10
+Internet  10.1.1.53               1   c46e.1f96.b84d  ARPA   Vlan10
+Internet  66.180.243.209          0   a80c.0d6a.7f51  ARPA   GigabitEthernet1/1
+Internet  66.180.243.210          -   f866.f26d.c740  ARPA   GigabitEthernet1/1
+Router#
+Router#
+Router#
+Router#sh run
+Building configuration...
+
+Current configuration : 6327 bytes
+!
+upgrade fpd auto
+version 12.2
+service timestamps debug uptime
+service timestamps log uptime
+no service password-encryption
+service counters max age 5
+service unsupported-transceiver
+!
+hostname Router
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$gxT4$CJA9zTtfq.P0HtgVUMtul/
+!
+no aaa new-model
+call-home
+  alert-group configuration
+  alert-group diagnostic
+  alert-group environment
+  alert-group inventory
+  alert-group syslog
+ profile "CiscoTAC-1"
+   no active
+   no destination transport-method http
+   destination transport-method email
+   destination address email callhome@cisco.com
+   destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService
+   subscribe-to-alert-group diagnostic severity minor
+   subscribe-to-alert-group environment severity minor
+   subscribe-to-alert-group syslog severity major pattern ".*"
+   subscribe-to-alert-group configuration periodic monthly 15 12:09
+   subscribe-to-alert-group inventory periodic monthly 15 11:54
+ip subnet-zero
+!
+!
+ip dhcp excluded-address 10.1.1.2 10.1.1.50
+ip dhcp excluded-address 172.1.1.2 172.1.1.50
+!
+ip dhcp pool dyn_Static
+   network 10.1.1.0 255.255.255.0
+   default-router 10.1.1.1
+   dns-server 64.60.0.17 64.60.0.18
+!
+ip dhcp pool Mall_CCTV
+   network 172.1.1.0 255.255.255.0
+   default-router 172.1.1.1
+   dns-server 64.60.0.17 64.60.0.18
+!
+ip multicast-routing
+vtp domain NGP-INTERNAL-DOMAIN
+vtp mode transparent
+mls netflow interface
+no mls flow ip
+no mls flow ipv6
+mls cef error action reset
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+redundancy
+ keepalive-enable
+ mode sso
+ main-cpu
+  auto-sync running-config
+spanning-tree mode pvst
+spanning-tree extend system-id
+diagnostic cns publish cisco.cns.device.diag_results
+diagnostic cns subscribe cisco.cns.device.diag_commands
+!
+vlan internal allocation policy ascending
+vlan access-log ratelimit 2000
+!
+vlan 10,20,90
+!
+!
+!
+!
+!
+interface GigabitEthernet1/1
+ ip address 66.180.243.210 255.255.255.248
+ ip nat outside
+
+Router#
+Router#
+Router#sh vlan
+Router#sh vlans ?
+  <1-4094>   Display configuration for a particular VLAN id.
+  tokenring  Token Ring Vlans on the RSM
+  tr-isl     Tokenring ISL Vlans
+  |          Output modifiers
+  <cr>
+
+Router#sh vlans
+
+No Virtual LANs configured.
+
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#vlan 10 ?
+  <cr>
+
+Router(config)#vlan 10
+Router(config-vlan)#exit
+% Applying VLAN changes may take few minutes.  Please wait...
+
+Router(config)#vlan 20
+Router(config-vlan)#exit
+% Applying VLAN changes may take few minutes.  Please wait...
+
+Router(config)#vlan 90
+Router(config-vlan)#end
+% Applying VLAN changes may take few minutes.  Please wait...
+
+Router#
+Router#
+Router#
+Router#
+1d22h: %SYS-5-CONFIG_I: Configured from console by console
+Router#
+Router#
+Router#
+Router#
+Router#
+Router#
+Router#wr
+Building configuration...
+
+1d22h: %PFINIT-SP-5-CONFIG_SYNC: Sync'ing the startup configuration to the standby Router. [OK]
+Router#
+Router#
+Router#
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#end
+Router#sh ru
+1d22h: %SYS-5-CONFIG_I: Configured from console by consolen
+Building configuration...
+
+Current configuration : 6327 bytes
+!
+upgrade fpd auto
+version 12.2
+service timestamps debug uptime
+service timestamps log uptime
+no service password-encryption
+service counters max age 5
+service unsupported-transceiver
+!
+hostname Router
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$gxT4$CJA9zTtfq.P0HtgVUMtul/
+!
+no aaa new-model
+call-home
+  alert-group configuration
+  alert-group diagnostic
+  alert-group environment
+  alert-group inventory
+  alert-group syslog
+ profile "CiscoTAC-1"
+   no active
+   no destination transport-method http
+   destination transport-method email
+   destination address email callhome@cisco.com
+   destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService
+   subscribe-to-alert-group diagnostic severity minor
+   subscribe-to-alert-group environment severity minor
+   subscribe-to-alert-group syslog severity major pattern ".*"
+   subscribe-to-alert-group configuration periodic monthly 15 12:09
+   subscribe-to-alert-group inventory periodic monthly 15 11:54
+ip subnet-zero
+!
+!
+ip dhcp excluded-address 10.1.1.2 10.1.1.50
+ip dhcp excluded-address 172.1.1.2 172.1.1.50
+!
+ip dhcp pool dyn_Static
+   network 10.1.1.0 255.255.255.0
+   default-router 10.1.1.1
+   dns-server 64.60.0.17 64.60.0.18
+!
+ip dhcp pool Mall_CCTV
+   network 172.1.1.0 255.255.255.0
+   default-router 172.1.1.1
+   dns-server 64.60.0.17 64.60.0.18
+!
+ip multicast-routing
+vtp domain NGP-INTERNAL-DOMAIN
+vtp mode transparent
+mls netflow interface
+no mls flow ip
+no mls flow ipv6
+mls cef error action reset
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+redundancy
+ keepalive-enable
+ mode sso
+ main-cpu
+  auto-sync running-config
+spanning-tree mode pvst
+spanning-tree extend system-id
+diagnostic cns publish cisco.cns.device.diag_results
+diagnostic cns subscribe cisco.cns.device.diag_commands
+!
+vlan internal allocation policy ascending
+vlan access-log ratelimit 2000
+!
+vlan 10,20,90
+!
+!
+!
+!
+!
+interface GigabitEthernet1/1
+ ip address 66.180.243.210 255.255.255.248
+ ip nat outside
+ ip pim sparse-mode
+ speed nonegotiate
+!
+interface GigabitEthernet1/2
+ switchport
+ switchport access vlan 10
+ switchport mode access
+ media-type rj45
+!
+interface GigabitEthernet2/1
+ no ip address
+ shutdown
+!
+interface GigabitEthernet2/2
+ switchport
+ switchport access vlan 20
+ switchport mode access
+ media-type rj45
+!
+interface GigabitEthernet3/1
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/2
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/3
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/4
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/5
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/6
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/7
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/8
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/9
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/10
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/11
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/12
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/13
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/14
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/15
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/16
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/17
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/18
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/19
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/20
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/21
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/22
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/23
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/24
+ no ip address
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ ip address 10.1.1.1 255.255.255.0
+ ip nat inside
+!
+interface Vlan20
+ ip address 172.1.1.1 255.255.255.0
+ ip nat inside
+ ip pim sparse-mode
+ shutdown
+!
+interface Vlan90
+ ip address 172.100.1.1 255.255.255.0
+ shutdown
+!
+ip nat inside source list The_Source_Mall interface GigabitEthernet1/1 overload
+ip nat inside source static tcp 172.1.1.2 2000 66.180.243.211 2000 extendable
+ip nat inside source static tcp 172.1.1.2 2001 66.180.243.211 2001 extendable
+ip nat inside source static tcp 172.1.1.2 2002 66.180.243.211 2002 extendable
+ip nat inside source static tcp 172.1.1.3 2003 66.180.243.211 2003 extendable
+ip nat inside source static tcp 172.1.1.3 2004 66.180.243.211 2004 extendable
+ip nat inside source static tcp 172.1.1.3 2005 66.180.243.211 2005 extendable
+ip nat inside source static tcp 172.1.1.4 2006 66.180.243.211 2006 extendable
+ip nat inside source static tcp 172.1.1.4 2007 66.180.243.211 2007 extendable
+ip nat inside source static tcp 172.1.1.4 2008 66.180.243.211 2008 extendable
+ip classless
+ip route 0.0.0.0 0.0.0.0 66.180.243.209
+!
+!
+no ip http server
+no ip http secure-server
+!
+ip access-list extended The_Source_Mall
+ permit ip 10.1.1.0 0.0.0.255 any
+ permit ip 172.1.1.0 0.0.0.255 any
+ permit ip 172.100.1.0 0.0.0.255 any
+!
+!
+!
+!
+
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#ip acc
+Router(config)#ip acce
+Router(config)#ip access-list ex
+Router(config)#ip access-list extended The_Source_Mall
+Router(config-ext-nacl)#no per
+Router(config-ext-nacl)#no permit ip 172.100.1.0 0.0.0.255 any
+Router(config-ext-nacl)#end
+Router#
+Router#
+1d22h: %SYS-5-CONFIG_I: Configured from console by console
+Router#
+Router#
+Router#
+Router#
+Router#sh run
+Building configuration...
+
+Current configuration : 6290 bytes
+!
+upgrade fpd auto
+version 12.2
+service timestamps debug uptime
+service timestamps log uptime
+no service password-encryption
+service counters max age 5
+service unsupported-transceiver
+!
+hostname Router
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$gxT4$CJA9zTtfq.P0HtgVUMtul/
+!
+no aaa new-model
+call-home
+  alert-group configuration
+  alert-group diagnostic
+  alert-group environment
+  alert-group inventory
+  alert-group syslog
+ profile "CiscoTAC-1"
+   no active
+   no destination transport-method http
+   destination transport-method email
+   destination address email callhome@cisco.com
+   destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService
+   subscribe-to-alert-group diagnostic severity minor
+   subscribe-to-alert-group environment severity minor
+   subscribe-to-alert-group syslog severity major pattern ".*"
+   subscribe-to-alert-group configuration periodic monthly 15 12:09
+   subscribe-to-alert-group inventory periodic monthly 15 11:54
+ip subnet-zero
+!
+!
+ip dhcp excluded-address 10.1.1.2 10.1.1.50
+ip dhcp excluded-address 172.1.1.2 172.1.1.50
+!
+ip dhcp pool dyn_Static
+   network 10.1.1.0 255.255.255.0
+   default-router 10.1.1.1
+   dns-server 64.60.0.17 64.60.0.18
+!
+ip dhcp pool Mall_CCTV
+   network 172.1.1.0 255.255.255.0
+   default-router 172.1.1.1
+   dns-server 64.60.0.17 64.60.0.18
+!
+ip multicast-routing
+vtp domain NGP-INTERNAL-DOMAIN
+vtp mode transparent
+mls netflow interface
+no mls flow ip
+no mls flow ipv6
+mls cef error action reset
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+redundancy
+ keepalive-enable
+ mode sso
+ main-cpu
+  auto-sync running-config
+spanning-tree mode pvst
+spanning-tree extend system-id
+diagnostic cns publish cisco.cns.device.diag_results
+diagnostic cns subscribe cisco.cns.device.diag_commands
+!
+vlan internal allocation policy ascending
+vlan access-log ratelimit 2000
+!
+vlan 10,20,90
+!
+!
+!
+!
+!
+interface GigabitEthernet1/1
+ ip address 66.180.243.210 255.255.255.248
+ ip nat outside
+ ip pim sparse-mode
+ speed nonegotiate
+!
+interface GigabitEthernet1/2
+ switchport
+ switchport access vlan 10
+ switchport mode access
+ media-type rj45
+!
+interface GigabitEthernet2/1
+ no ip address
+ shutdown
+!
+interface GigabitEthernet2/2
+ switchport
+ switchport access vlan 20
+ switchport mode access
+ media-type rj45
+!
+interface GigabitEthernet3/1
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/2
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/3
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/4
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/5
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/6
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/7
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/8
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/9
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/10
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/11
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/12
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/13
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/14
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/15
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/16
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/17
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/18
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/19
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/20
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/21
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/22
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/23
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/24
+ no ip address
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ ip address 10.1.1.1 255.255.255.0
+ ip nat inside
+!
+interface Vlan20
+ ip address 172.1.1.1 255.255.255.0
+ ip nat inside
+ ip pim sparse-mode
+ shutdown
+!
+interface Vlan90
+ ip address 172.100.1.1 255.255.255.0
+ shutdown
+!
+ip nat inside source list The_Source_Mall interface GigabitEthernet1/1 overload
+ip nat inside source static tcp 172.1.1.2 2000 66.180.243.211 2000 extendable
+ip nat inside source static tcp 172.1.1.2 2001 66.180.243.211 2001 extendable
+ip nat inside source static tcp 172.1.1.2 2002 66.180.243.211 2002 extendable
+ip nat inside source static tcp 172.1.1.3 2003 66.180.243.211 2003 extendable
+ip nat inside source static tcp 172.1.1.3 2004 66.180.243.211 2004 extendable
+ip nat inside source static tcp 172.1.1.3 2005 66.180.243.211 2005 extendable
+ip nat inside source static tcp 172.1.1.4 2006 66.180.243.211 2006 extendable
+ip nat inside source static tcp 172.1.1.4 2007 66.180.243.211 2007 extendable
+ip nat inside source static tcp 172.1.1.4 2008 66.180.243.211 2008 extendable
+ip classless
+ip route 0.0.0.0 0.0.0.0 66.180.243.209
+!
+!
+no ip http server
+no ip http secure-server
+!
+ip access-list extended The_Source_Mall
+ permit ip 10.1.1.0 0.0.0.255 any
+ permit ip 172.1.1.0 0.0.0.255 any
+!
+!
+!
+!
+control-plane
+
+Router#
+Router#
+Router#
+Router#
+Router#sh vlans ?
+  <1-4094>   Display configuration for a particular VLAN id.
+  tokenring  Token Ring Vlans on the RSM
+  tr-isl     Tokenring ISL Vlans
+  |          Output modifiers
+  <cr>
+
+Router#sh vlans
+
+No Virtual LANs configured.
+
+Router#da
+Router#data
+Router#?
+Exec commands:
+  access-enable    Create a temporary Access-List entry
+  access-profile   Apply user-profile to interface
+  access-template  Create a temporary Access-List entry
+  archive          manage archive files
+  attach           Connect to a module's console
+  auto             Exec level Automation
+  beep             Blocks Extensible Exchange Protocol commands
+  bfe              For manual emergency modes setting
+  calendar         Manage the hardware calendar
+  call-home        Call-Home commands
+  cd               Change current directory
+  clear            Reset functions
+  clock            Manage the system clock
+  cns              CNS agents
+  collect          Collect Information
+  configure        Enter configuration mode
+  connect          Open a terminal connection
+  copy             Copy from one file to another
+  crypto           Encryption related commands.
+  debug            Debugging functions (see also 'undebug')
+  delete           Delete a file
+  diagnostic       Diagnostic commands
+  dir              List files on a filesystem
+  disable          Turn off privileged commands
+  disconnect       Disconnect an existing network connection
+  dot1x            IEEE 802.1X Exec Commands
+  enable           Turn on privileged commands
+  eou              EAPoUDP
+  erase            Erase a filesystem
+  ethernet         Ethernet parameters
+  event            Event related commands
+  execute-on       Execute command on a module's console
+  exit             Exit from the EXEC
+  format           Format a filesystem
+  fsck             Filesystem check
+  hangup           Exit from the EXEC
+  help             Description of the interactive help system
+  hw-module        Apply command (e.g. reset) to specific hardware component
+  if-mgr           IF-MGR operations
+  lat              Open a lat connection
+  lock             Lock the terminal
+  login            Log in as a particular user
+  logout           Exit from the EXEC
+  mkdir            Create new directory
+  monitor          Monitoring different system events
+  more             Display the contents of a file
+  mpls             MPLS commands
+  mrinfo           Request neighbor and version information from a multicast
+                   router
+  mrm              IP Multicast Routing Monitor Test
+  mstat            Show statistics after multiple multicast traceroutes
+  mtrace           Trace reverse multicast path from destination to source
+  name-connection  Name an existing network connection
+  no               Disable debugging functions
+  pad              Open a X.29 PAD connection
+  partition        Partition disk
+  ping             Send echo messages
+  ppp              Start IETF Point-to-Point Protocol (PPP)
+  pwd              Display current working directory
+  redundancy       Redundancy Facility (RF) exec commands
+  reload           Halt and perform a cold restart
+  remote           Remote commands
+  rename           Rename a file
+  renew            Renew
+  restart          Restart Connection
+  resume           Resume an active network connection
+  rlogin           Open an rlogin connection
+  rmdir            Remove existing directory
+  rsh              Execute a remote command
+  send             Send a message to other tty lines
+  session          session to a module
+  set              Set system parameter (not config)
+  setup            Run the SETUP command facility
+  show             Show running system information
+  slip             Start Serial-line IP (SLIP)
+  squeeze          Squeeze a filesystem
+  ssh              Open a secure shell client connection
+  start-chat       Start a chat-script on a line
+  switch           Virtual switch exec command
+  systat           Display information about terminal lines
+  tarp             TARP (Target ID Resolution Protocol) commands
+  tclquit          Quit Tool Command Language shell
+  tclsh            Tool Command Language shell
+  telnet           Open a telnet connection
+  terminal         Set terminal line parameters
+  test             Test subsystems, memory, and interfaces
+  traceroute       Trace route to destination
+  tunnel           Open a tunnel connection
+  udld             UDLD protocol commands
+  udptn            Open an udptn connection
+  undebug          Disable debugging functions (see also 'debug')
+  undelete         Undelete a file
+  upgrade          Upgrade commands
+  verify           Verify a file
+  vtp              Configure global VTP state
+  where            List active connections
+  which-route      Do OSI route table lookup and display results
+  write            Write running configuration to memory, network, or terminal
+  x28              Become an X.28 PAD
+  x3               Set X.3 parameters on PAD
+  xremote          Enter XRemote mode
+  <cr>
+
+Router#vlan
+Router#vlans
+Router#sh vlan
+Router#sh vlan?
+vlan  vlans
+
+Router#sh vlan ?
+  access-log    VACL Logging
+  access-map    VLAN access-map
+  all-ports     VLAN information for both trunk and access ports
+  brief         VTP all VLAN status in brief
+  counters      VLAN traffic counters for all VLANs
+  dot1q         Display dot1q parameters
+  filter        VLAN filter information
+  id            VTP VLAN status by VLAN id
+  ifindex       SNMP ifIndex
+  internal      VLAN internal usage
+  mapping       Show VLAN mappings
+  mtu           VLAN MTU information
+  name          VTP VLAN status by VLAN name
+  port          VLAN port information
+  private-vlan  Private VLAN information
+  remote-span   Remote SPAN VLANs
+  summary       VLAN summary information
+  virtual-port  System Virtual Port Summary
+  |             Output modifiers
+  <cr>
+
+Router#sh vlan
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Gi3/13
+10   VLAN0010                         active    Gi1/2
+20   VLAN0020                         active    Gi2/2
+90   VLAN0090                         active
+1002 fddi-default                     act/unsup
+1003 trcrf-default                    act/unsup
+1004 fddinet-default                  act/unsup
+1005 trbrf-default                    act/unsup
+
+VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+1    enet  100001     1500  -      -      -        -    -        0      0
+10   enet  100010     1500  -      -      -        -    -        0      0
+20   enet  100020     1500  -      -      -        -    -        0      0
+90   enet  100090     1500  -      -      -        -    -        0      0
+1002 fddi  101002     1500  -      -      -        -    -        0      0
+1003 trcrf 101003     4472  1005   3276   -        -    srb      0      0
+1004 fdnet 101004     1500  -      -      -        ieee -        0      0
+1005 trbrf 101005     4472  -      -      15       ibm  -        0      0
+
+
+VLAN AREHops STEHops Backup CRF
+---- ------- ------- ----------
+1003 7       7       off
+
+Remote SPAN VLANs
+------------------------------------------------------------------------------
+
+
+Primary Secondary Type              Ports
+------- --------- ----------------- ------------------------------------------
+
+Router#sh run
+Building configuration...
+
+Current configuration : 6290 bytes
+!
+upgrade fpd auto
+version 12.2
+service timestamps debug uptime
+service timestamps log uptime
+no service password-encryption
+service counters max age 5
+service unsupported-transceiver
+!
+hostname Router
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$gxT4$CJA9zTtfq.P0HtgVUMtul/
+!
+no aaa new-model
+call-home
+  alert-group configuration
+  alert-group diagnostic
+  alert-group environment
+  alert-group inventory
+  alert-group syslog
+ profile "CiscoTAC-1"
+   no active
+   no destination transport-method http
+   destination transport-method email
+   destination address email callhome@cisco.com
+   destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService
+   subscribe-to-alert-group diagnostic severity minor
+   subscribe-to-alert-group environment severity minor
+   subscribe-to-alert-group syslog severity major pattern ".*"
+   subscribe-to-alert-group configuration periodic monthly 15 12:09
+   subscribe-to-alert-group inventory periodic monthly 15 11:54
+ip subnet-zero
+!
+!
+ip dhcp excluded-address 10.1.1.2 10.1.1.50
+ip dhcp excluded-address 172.1.1.2 172.1.1.50
+!
+ip dhcp pool dyn_Static
+   network 10.1.1.0 255.255.255.0
+   default-router 10.1.1.1
+   dns-server 64.60.0.17 64.60.0.18
+!
+ip dhcp pool Mall_CCTV
+   network 172.1.1.0 255.255.255.0
+   default-router 172.1.1.1
+   dns-server 64.60.0.17 64.60.0.18
+!
+ip multicast-routing
+vtp domain NGP-INTERNAL-DOMAIN
+vtp mode transparent
+mls netflow interface
+no mls flow ip
+no mls flow ipv6
+mls cef error action reset
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+redundancy
+ keepalive-enable
+ mode sso
+ main-cpu
+  auto-sync running-config
+spanning-tree mode pvst
+spanning-tree extend system-id
+diagnostic cns publish cisco.cns.device.diag_results
+diagnostic cns subscribe cisco.cns.device.diag_commands
+!
+vlan internal allocation policy ascending
+vlan access-log ratelimit 2000
+!
+vlan 10,20,90
+!
+!
+!
+!
+!
+interface GigabitEthernet1/1
+ ip address 66.180.243.210 255.255.255.248
+ ip nat outside
+ ip pim sparse-mode
+ speed nonegotiate
+!
+interface GigabitEthernet1/2
+ switchport
+ switchport access vlan 10
+ switchport mode access
+ media-type rj45
+!
+interface GigabitEthernet2/1
+ no ip address
+ shutdown
+!
+interface GigabitEthernet2/2
+ switchport
+ switchport access vlan 20
+ switchport mode access
+ media-type rj45
+!
+interface GigabitEthernet3/1
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/2
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/3
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/4
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/5
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/6
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/7
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/8
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/9
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/10
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/11
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/12
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/13
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,90
+ switchport mode trunk
+!
+interface GigabitEthernet3/14
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/15
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/16
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/17
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/18
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/19
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/20
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/21
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/22
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/23
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/24
+ no ip address
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ ip address 10.1.1.1 255.255.255.0
+ ip nat inside
+!
+interface Vlan20
+ ip address 172.1.1.1 255.255.255.0
+ ip nat inside
+ ip pim sparse-mode
+ shutdown
+!
+interface Vlan90
+ ip address 172.100.1.1 255.255.255.0
+ shutdown
+!
+ip nat inside source list The_Source_Mall interface GigabitEthernet1/1 overload
+ip nat inside source static tcp 172.1.1.2 2000 66.180.243.211 2000 extendable
+ip nat inside source static tcp 172.1.1.2 2001 66.180.243.211 2001 extendable
+
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int vlan 20
+Router(config-if)#no shu
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#int v
+1d22h: %PIM-5-DRCHG: DR change from neighbor 0.0.0.0 to 172.1.1.1 on interface Vlan20lan 90
+Router(config-if)#no sh
+Router(config-if)#no shutdown
+Router(config-if)#
+Router(config-if)#
+Router(config-if)#
+Router(config-if)#
+Router(config-if)#
+Router(config-if)#exit
+Router(config)#int vlan 90
+Router(config-if)#no sh
+Router(config-if)#no shutdown
+Router(config-if)#
+Router(config-if)#
+Router(config-if)#
+Router(config-if)#
+Router(config-if)#end
+Router#
+Router#
+Router#
+1d22h: %SYS-5-CONFIG_I: Configured from console by console
+Router#wr
+Building configuration...
+
+1d22h: %PFINIT-SP-5-CONFIG_SYNC: Sync'ing the startup configuration to the standby Router. [OK]
+Router#
+Router#
+Router#ping 172.100.1.2
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.2, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/2/4 ms
+Router#ping 172.100.1.3
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.3, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/3/4 ms
+Router#ping 172.100.1.4
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.4, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/2/4 ms
+Router#ping 172.100.1.5
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.5, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/3/4 ms
+Router#ping 172.100.1.6
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.6, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/2/4 ms
+Router#ping 172.100.1.7
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.7, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/2/4 ms
+Router#ping 172.100.1.8
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.8, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/2/4 ms
+Router#ping 172.100.1.9
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.9, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/3/4 ms
+Router#ping 172.100.1.10
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.10, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/2/4 ms
+Router#ping 172.100.1.111
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.111, timeout is 2 seconds:
+...
+Success rate is 0 percent (0/3)
+Router#ping 172.100.1.11
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.11, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/3/4 ms
+Router#ping 172.100.1.12
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.12, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/2/4 ms
+Router#ping 172.100.1.13
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.100.1.13, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/3/4 ms
+Router#
+Router#
+Router#
+Router#
+Router#telnet 172.100.1.2
+Trying 172.100.1.2 ... Open
+
+The_Source_C1 2c:39:c1:ef:b3:97
+SAOS is True Carrier Ethernet TM software.
+
+The_Source_C1 login: su
+Password:
+
+SAOS is True Carrier Ethernet TM software.
+Welcome to the shell.
+The_Source_C1>
+The_Source_C1>
+The_Source_C1>
+The_Source_C1>
+The_Source_C1>
+The_Source_C1>
+The_Source_C1>
+The_Source_C1> exit
+
+Goodbye.
+
+[Connection to 172.100.1.2 closed by foreign host]
+Router#
+Router#
+Router#
+Router#
+Router#?
+Exec commands:
+  access-enable    Create a temporary Access-List entry
+  access-profile   Apply user-profile to interface
+  access-template  Create a temporary Access-List entry
+  archive          manage archive files
+  attach           Connect to a module's console
+  auto             Exec level Automation
+  beep             Blocks Extensible Exchange Protocol commands
+  bfe              For manual emergency modes setting
+  calendar         Manage the hardware calendar
+  call-home        Call-Home commands
+  cd               Change current directory
+  clear            Reset functions
+  clock            Manage the system clock
+  cns              CNS agents
+  collect          Collect Information
+  configure        Enter configuration mode
+  connect          Open a terminal connection
+  copy             Copy from one file to another
+  crypto           Encryption related commands.
+  debug            Debugging functions (see also 'undebug')
+  delete           Delete a file
+  diagnostic       Diagnostic commands
+  dir              List files on a filesystem
+  disable          Turn off privileged commands
+  disconnect       Disconnect an existing network connection
+  dot1x            IEEE 802.1X Exec Commands
+  enable           Turn on privileged commands
+  eou              EAPoUDP
+  erase            Erase a filesystem
+  ethernet         Ethernet parameters
+  event            Event related commands
+  execute-on       Execute command on a module's console
+  exit             Exit from the EXEC
+  format           Format a filesystem
+  fsck             Filesystem check
+  hangup           Exit from the EXEC
+  help             Description of the interactive help system
+  hw-module        Apply command (e.g. reset) to specific hardware component
+  if-mgr           IF-MGR operations
+  lat              Open a lat connection
+  lock             Lock the terminal
+  login            Log in as a particular user
+  logout           Exit from the EXEC
+  mkdir            Create new directory
+  monitor          Monitoring different system events
+  more             Display the contents of a file
+  mpls             MPLS commands
+  mrinfo           Request neighbor and version information from a multicast
+                   router
+  mrm              IP Multicast Routing Monitor Test
+  mstat            Show statistics after multiple multicast traceroutes
+  mtrace           Trace reverse multicast path from destination to source
+  name-connection  Name an existing network connection
+  no               Disable debugging functions
+  pad              Open a X.29 PAD connection
+  partition        Partition disk
+  ping             Send echo messages
+  ppp              Start IETF Point-to-Point Protocol (PPP)
+  pwd              Display current working directory
+  redundancy       Redundancy Facility (RF) exec commands
+  reload           Halt and perform a cold restart
+  remote           Remote commands
+  rename           Rename a file
+  renew            Renew
+  restart          Restart Connection
+  resume           Resume an active network connection
+  rlogin           Open an rlogin connection
+
+Router#?
+Exec commands:
+  access-enable    Create a temporary Access-List entry
+  access-profile   Apply user-profile to interface
+  access-template  Create a temporary Access-List entry
+  archive          manage archive files
+  attach           Connect to a module's console
+  auto             Exec level Automation
+  beep             Blocks Extensible Exchange Protocol commands
+  bfe              For manual emergency modes setting
+  calendar         Manage the hardware calendar
+  call-home        Call-Home commands
+  cd               Change current directory
+  clear            Reset functions
+  clock            Manage the system clock
+  cns              CNS agents
+  collect          Collect Information
+  configure        Enter configuration mode
+  connect          Open a terminal connection
+  copy             Copy from one file to another
+  crypto           Encryption related commands.
+  debug            Debugging functions (see also 'undebug')
+  delete           Delete a file
+  diagnostic       Diagnostic commands
+  dir              List files on a filesystem
+  disable          Turn off privileged commands
+  disconnect       Disconnect an existing network connection
+  dot1x            IEEE 802.1X Exec Commands
+  enable           Turn on privileged commands
+  eou              EAPoUDP
+  erase            Erase a filesystem
+  ethernet         Ethernet parameters
+  event            Event related commands
+  execute-on       Execute command on a module's console
+  exit             Exit from the EXEC
+  format           Format a filesystem
+  fsck             Filesystem check
+  hangup           Exit from the EXEC
+  help             Description of the interactive help system
+  hw-module        Apply command (e.g. reset) to specific hardware component
+  if-mgr           IF-MGR operations
+  lat              Open a lat connection
+  lock             Lock the terminal
+  login            Log in as a particular user
+  logout           Exit from the EXEC
+  mkdir            Create new directory
+  monitor          Monitoring different system events
+  more             Display the contents of a file
+  mpls             MPLS commands
+  mrinfo           Request neighbor and version information from a multicast
+                   router
+  mrm              IP Multicast Routing Monitor Test
+  mstat            Show statistics after multiple multicast traceroutes
+  mtrace           Trace reverse multicast path from destination to source
+  name-connection  Name an existing network connection
+  no               Disable debugging functions
+  pad              Open a X.29 PAD connection
+  partition        Partition disk
+  ping             Send echo messages
+  ppp              Start IETF Point-to-Point Protocol (PPP)
+  pwd              Display current working directory
+  redundancy       Redundancy Facility (RF) exec commands
+  reload           Halt and perform a cold restart
+  remote           Remote commands
+  rename           Rename a file
+  renew            Renew
+  restart          Restart Connection
+  resume           Resume an active network connection
+  rlogin           Open an rlogin connection
+  rmdir            Remove existing directory
+  rsh              Execute a remote command
+  send             Send a message to other tty lines
+  session          session to a module
+  set              Set system parameter (not config)
+  setup            Run the SETUP command facility
+  show             Show running system information
+  slip             Start Serial-line IP (SLIP)
+  squeeze          Squeeze a filesystem
+  ssh              Open a secure shell client connection
+  start-chat       Start a chat-script on a line
+  switch           Virtual switch exec command
+  systat           Display information about terminal lines
+  tarp             TARP (Target ID Resolution Protocol) commands
+  tclquit          Quit Tool Command Language shell
+  tclsh            Tool Command Language shell
+  telnet           Open a telnet connection
+  terminal         Set terminal line parameters
+  test             Test subsystems, memory, and interfaces
+  traceroute       Trace route to destination
+  tunnel           Open a tunnel connection
+  udld             UDLD protocol commands
+  udptn            Open an udptn connection
+  undebug          Disable debugging functions (see also 'debug')
+  undelete         Undelete a file
+  upgrade          Upgrade commands
+  verify           Verify a file
+  vtp              Configure global VTP state
+  where            List active connections
+  which-route      Do OSI route table lookup and display results
+  write            Write running configuration to memory, network, or terminal
+  x28              Become an X.28 PAD
+  x3               Set X.3 parameters on PAD
+  xremote          Enter XRemote mode
+  <cr>
+
+Router#
+Router#
+Router#
+Router#re
+Router#reda
+Router#reden
+Router#redu
+Router#redundancy ?
+Redundancy exec commands:
+  force-switchover  Force a switchover
+  reload            Redundancy Facility (RF) reload
+
+Router#
+Router#
+Router#
+Router#
+Router#
+Router#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Router con0 is now available
+
+
+
+
+
+Press RETURN to get started.
+
+
+Router>
+Router>
+Router>
+Router>en
+Password:
+Router#
+Router#
+Router#telnet 172.100.1.12
+Trying 172.100.1.12 ... Open
+
+Source_Mall_K2_Sector 2c:39:c1:ef:a6:ce
+SAOS is True Carrier Ethernet TM software.
+
+Source_Mall_K2_Sector login: su
+Password:
+
+SAOS is True Carrier Ethernet TM software.
+Welcome to the shell.
+Source_Mall_K2_Sector>

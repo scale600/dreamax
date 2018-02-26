@@ -1,0 +1,55 @@
+access-list create acl-profile Netbios default-filter-action allow
+access-list add profile Netbios rule net135 precedence 1 filter-action deny l4-dst-port 135-139
+access-list add profile Netbios rule net445 precedence 2 filter-action deny l4-dst-port 445
+
+
+
+
+##. Ciena, ACL 적용 순서
+
+1. Resource 설정
+
+아래 명령어를 입력
+resource-manager pool set feature access-list resource classifier count 256
+resource-manager pool set feature access-list resource counter count 256
+resource-manager pool set feature vc-statistics resource classifier count 0
+resource-manager pool set feature vc-statistics resource counter count 0
+
+Resource-manager validate
+
+2. System Reboot
+
+아래 명령어를 입력
+Chassis reboot
+
+3. ACL 적용(※Uplink Port는 제외 함)
+access-list create acl-profile Netbios default-filter-action allow
+access-list add profile Netbios rule net135 precedence 1 filter-action deny l4-dst-port 135-139
+access-list add profile Netbios rule net445 precedence 2 filter-action deny l4-dst-port 445
+port set port 1 ingress-acl Netbios
+port set port 2 ingress-acl Netbios
+port set port 4 ingress-acl Netbios
+port set port 5 ingress-acl Netbios
+port set port 6 ingress-acl Netbios
+port set port 7 ingress-acl Netbios
+port set port 8 ingress-acl Netbios
+port set port 9 ingress-acl Netbios
+port set port 10 ingress-acl Netbios
+port set port 11 ingress-acl Netbios
+port set port 12 ingress-acl Netbios
+port set port 13 ingress-acl Netbios
+port set port 14 ingress-acl Netbios
+port set port 15 ingress-acl Netbios
+port set port 16 ingress-acl Netbios
+port set port 17 ingress-acl Netbios
+port set port 18 ingress-acl Netbios
+port set port 19 ingress-acl Netbios
+port set port 20 ingress-acl Netbios
+port set port 21 ingress-acl Netbios
+port set port 22 ingress-acl Netbios
+port set port 23 ingress-acl Netbios
+port set port 24 ingress-acl Netbios
+port set port 25 ingress-acl Netbios
+port set port 26 ingress-acl Netbios
+
+

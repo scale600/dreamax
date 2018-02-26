@@ -1,0 +1,41 @@
+switchd49902#conf t
+switchd49902(config)#int FastEthernet 24
+switchd49902(config-if)#no switchport access vlan
+switchd49902(config-if)#switchport access vlan 90
+switchd49902(config-if)#end
+
+
+switchd49902#conf t
+switchd49902(config)#hostname PCS-IDF
+PCS-IDF(config)#end
+
+
+
+
+
+switchd49902#sh logging
+
+
+
+switchd49902#sh vlan
+
+
+switchd49902#conf t
+switchd49902(config)#int range FastEthernet1-24
+switchd49902(config-if-range)#rate-limit 10240 1024000
+switchd49902(config-if-range)#traffic-shape 10240 1024000
+switchd49902(config-if-range)#end
+switchd49902#wr
+
+
+
+switch9eb4c4(config)#int fa5
+switch9eb4c4(config-if)#no switchport access vlan
+switch9eb4c4(config-if)#switchport access vlan 20
+switch9eb4c4(config-if)#end
+switch9eb4c4#wr
+
+
+switch9eb4c4#conf t
+switch9eb4c4(config)#int fa5
+switch9eb4c4(config-if)#switchport access vlan 90
